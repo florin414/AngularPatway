@@ -1,0 +1,37 @@
+.project-wrapper{
+  background: white;
+  display: grid;
+  grid-template-rows: 120px 120px 120px 120px;
+  grid-row-gap: 50px;
+}
+
+  .input-up-container{
+    position: relative;
+    left: 90px;
+  }
+
+  .input-down-container{
+    position: relative;
+    left: 90px;
+  }
+
+  mat-label {
+    color: blue;
+  }
+
+  mat-form-field{
+    padding-right: 80px;
+    margin-top: 70px;
+  }
+
+  mat-icon{
+    padding-right: 50px;
+  }
+
+  button{
+    margin-top: 150px;
+    margin-right: 160px;
+    margin-left: 20px;
+    float: right;
+    padding-right: 25px;
+  }
