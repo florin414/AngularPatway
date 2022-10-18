@@ -1,15 +1,9 @@
-  <div class="topnav">
-      <li><a>Pokemon</a></li>
-      <li><a>Home</a></li>
-      <li><a>Detail</a></li>
-      <li><a routerLinkActive="active" routerLink="/create-product" ariaCurrentWhenActive="page">Create Product</a></li>
-      <li><a>Product List</a></li>
-    <div class="search">
-      <form>
-        <input type="text" placeholder="Search Pokemon...">
-      </form>
-    </div>
-  </div>
+<mat-toolbar color="primary" style="height:3em">
+  <span routerLinkActive="active" routerLink="/pokemon">Pokemon</span>
+  <span routerLinkActive="active" routerLink="/login">Home</span>
+  <span>Detail</span>
+  <span routerLinkActive="active" routerLink="/product">Create Product</span>
+  <span routerLinkActive="active" routerLink="/product-list">Product List</span>
+</mat-toolbar>
 
-  <router-outlet></router-outlet>
-
+<router-outlet></router-outlet>

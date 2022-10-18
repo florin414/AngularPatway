@@ -1,0 +1,19 @@
+<mat-grid-list
+  cols="4"
+  rowHeight="fit"
+  gutterSize="1px"
+  [style.height]="'700px'"
+>
+  <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]">
+    <mat-card>
+      <img mat-card-avatar src="assets/images/Pikachu.png" />
+      <mat-card-subtitle fxLayoutAlign="center center">
+        <strong>
+          <a [routerLink]="['/pokemon', 3]" style="color: rgb(127, 126, 126)">
+            Pikachu
+          </a>
+        </strong>
+      </mat-card-subtitle>
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

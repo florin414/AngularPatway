@@ -1,42 +1,10 @@
-li {
-  display: inline;
-  float: left;
-}
-
-.topnav {
-  overflow: hidden;
-  background-color: #333;
-}
-
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li a {
-  display: block;
-  color: white;
+span {
+  color: black;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
 }
 
-li a:hover {
+span:hover {
   background-color: white;
-}
-
-.topnav .search {
-  float: right;
-  padding-right: 25px;
-}
-
-.topnav input[type=text] {
-  padding: 6px;
-  margin-top: 8px;
-  font-size: 15px;
-  border: none;
 }
 

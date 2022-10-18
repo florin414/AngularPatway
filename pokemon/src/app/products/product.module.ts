@@ -1,32 +1,25 @@
-import { ProductComponent } from './product.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { CreateProductComponent } from './create-product/create-product.component';
 import { NgModule } from '@angular/core';
-import { MatFormFieldModule } from "@angular/material/form-field"
-import { MatButtonModule } from "@angular/material/button";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { MatInputModule } from "@angular/material/input";
-import { MatSelectModule } from "@angular/material/select";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MatIconModule } from '@angular/material/icon';
-import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [
-  { path : 'create-product', component : ProductComponent }
-];
+import { RouterModule } from '@angular/router';
+import { ProductRoutingModule } from './product-routing.module';
+import { CommonModule } from '@angular/common';
+import { MaterialModule } from '../shared/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
-    ProductComponent
+    CreateProductComponent,
+    ProductListComponent
   ],
   imports: [
-    MatFormFieldModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatInputModule,
-    MatSelectModule,
-    MatIconModule,
+    CommonModule,
+    MaterialModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes),
+    ProductRoutingModule,
+    FlexLayoutModule
   ],
   exports: [RouterModule]
 })
