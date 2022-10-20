@@ -1,4 +1,3 @@
-import { DamageWhenAttackedService } from './../services/damage-when-attacked.service';
 import { MaterialModule } from './../shared/material.module';
 import { PokemonListComponent } from './pokemon-list/pokemon-list.component';
 import { PokemonStatisticsComponent } from './pokemon-detail/pokemon-statistics/pokemon-statistics.component';
@@ -11,9 +10,8 @@ import { PokemonRoutingModule } from "./pokemon-routing.module";
 import { PokemonDetailComponent } from './pokemon-detail/pokemon-detail.component';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { EvolutionService } from '../services/evolution.service';
-import { ProfileService } from '../services/profile.service';
 import { PokemonService } from '../services/pokemon.service';
+import { PokemonCardComponent } from './pokemon-list/pokemon-card/pokemon-card.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +20,8 @@ import { PokemonService } from '../services/pokemon.service';
     PokemonProfileComponent,
     PokemonStatisticsComponent,
     PokemonDetailComponent,
-    PokemonListComponent
+    PokemonListComponent,
+    PokemonCardComponent
   ],
   imports: [
     PokemonRoutingModule,
@@ -31,10 +30,7 @@ import { PokemonService } from '../services/pokemon.service';
     FlexLayoutModule
   ],
   providers: [
-    EvolutionService,
-    PokemonService,
-    ProfileService,
-    DamageWhenAttackedService
+    PokemonService
   ],
   exports: [RouterModule]
 })

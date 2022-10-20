@@ -2,18 +2,30 @@
   cols="4"
   rowHeight="fit"
   gutterSize="1px"
-  [style.height]="'700px'"
+  [style.height]="'1600px'"
 >
-  <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]">
+  <mat-grid-tile *ngFor="let pokemon of pokemons">
     <mat-card>
-      <img mat-card-avatar src="assets/images/Pikachu.png" />
+      <img mat-card-avatar src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"/>
       <mat-card-subtitle fxLayoutAlign="center center">
         <strong>
-          <a [routerLink]="['/pokemon', 3]" style="color: rgb(127, 126, 126)">
-            Pikachu
-          </a>
+          <a [routerLink]="['/pokemon', 3]" style="color: rgb(127, 126, 126)">{{
+            pokemon.name
+          }}</a>
         </strong>
       </mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
+<mat-button-toggle
+  class="previous-button"
+  [disabled]="previousButtonIsDisabled"
+  (click)="togglePreviousPokemons()"
+  >previous</mat-button-toggle
+>
+<mat-button-toggle
+  class="next-button"
+  [disabled]="nextButtonIsDisabled"
+  (click)="toggleNextPokemons()"
+  >next</mat-button-toggle
+>
