@@ -1,7 +1,8 @@
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { PokemonDetails } from './../models/pokemon/pokemon-details';
+import { catchError, filter, map, Observable, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { IPokemonApi } from '../models/pokemon-api';
+import { PokemonList } from '../models/pokemon/pokemon-list';
 
 @Injectable({
   providedIn: 'root',
@@ -9,13 +10,19 @@ import { IPokemonApi } from '../models/pokemon-api';
 export class PokemonService {
   constructor(private http: HttpClient) {}
 
-  getPokemonApi(pokemonApiUrl: string): Observable<IPokemonApi> {
-    return this.http.get<IPokemonApi>(pokemonApiUrl).pipe(
-      tap((data) => console.log('All: ', JSON.stringify(data))),
+  getPokemonList(pokemonApiUrl: string): Observable<PokemonList> {
+    return this.http.get<PokemonList>(pokemonApiUrl).pipe(
+      // tap((data) => console.log('All: ', JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
+  getPokemonDetails(pokemonDetailsUrl: string): Observable<PokemonDetails> {
+    return this.http.get<PokemonDetails>(pokemonDetailsUrl).pipe(
+      // tap((data) => console.log('All: ', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
 
   private handleError(err: HttpErrorResponse): Observable<never> {
     let errorMessage = '';

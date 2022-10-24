@@ -1,5 +1,5 @@
 import { CreateProductService } from './../../services/create-product.service';
-import { Country } from './../../models/country';
+import { Country } from '../../models/product/country';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 

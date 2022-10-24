@@ -1,31 +1,23 @@
-<mat-grid-list
+<div>
+  <mat-grid-list
   cols="4"
   rowHeight="fit"
   gutterSize="1px"
   [style.height]="'1600px'"
 >
   <mat-grid-tile *ngFor="let pokemon of pokemons">
-    <mat-card>
-      <img mat-card-avatar src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"/>
-      <mat-card-subtitle fxLayoutAlign="center center">
-        <strong>
-          <a [routerLink]="['/pokemon', 3]" style="color: rgb(127, 126, 126)">{{
-            pokemon.name
-          }}</a>
-        </strong>
-      </mat-card-subtitle>
-    </mat-card>
+    <app-pokemon-card [pokemonDetailUrl]="pokemon.url"></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>
 <mat-button-toggle
   class="previous-button"
-  [disabled]="previousButtonIsDisabled"
   (click)="togglePreviousPokemons()"
   >previous</mat-button-toggle
 >
 <mat-button-toggle
   class="next-button"
-  [disabled]="nextButtonIsDisabled"
   (click)="toggleNextPokemons()"
   >next</mat-button-toggle
 >
+</div>
+

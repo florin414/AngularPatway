@@ -1,7 +1,7 @@
 import { catchError, Observable, tap, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Country } from '../models/country';
+import { Country } from '../models/product/country';
 
 @Injectable({
   providedIn: 'root',
