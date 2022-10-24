@@ -5,8 +5,8 @@ import { PokemonDetailGuard } from "./pokemon-detail/pokemon-detail.guard";
 import { PokemonListComponent } from "./pokemon-list/pokemon-list.component";
 
 const routes: Routes = [
-  { path: 'pokemon', component: PokemonListComponent },
-  { path: 'pokemon/:id',
+  { path: '', component: PokemonListComponent },
+  { path: 'pokemon/:name',
     canActivate: [ PokemonDetailGuard ],
     component: PokemonDetailComponent }
 ];
