@@ -10,10 +10,38 @@
     left: 90px;
   }
 
+    .name-form-field{
+      width: 30%;
+    }
+
+    .description-form-field{
+      width: 30%;
+    }
+
+    .price-form-field{
+      width: 30%;
+    }
+
   .input-down-container{
     position: relative;
     left: 90px;
   }
+
+    .select-form-field{
+      width: 30%;
+    }
+
+    .image-url-form-field{
+      width: 30%;
+    }
+
+    .phone-form-field{
+      width: 15%;
+    }
+
+    .select-number-form-field{
+      width: 12%;
+    }
 
   mat-label {
     color: blue;

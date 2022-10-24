@@ -1,3 +1,4 @@
+import { CreateProductService } from './../services/create-product.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ReactiveFormsModule,
     ProductRoutingModule,
     FlexLayoutModule
+  ],
+  providers: [
+    CreateProductService
   ],
   exports: [RouterModule]
 })
