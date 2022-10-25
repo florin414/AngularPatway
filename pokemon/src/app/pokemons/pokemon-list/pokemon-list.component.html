@@ -9,7 +9,8 @@
     <app-pokemon-card [pokemonDetailUrl]="pokemon.url"></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>
-<mat-button-toggle
+<mat-button-toggle-group>
+  <mat-button-toggle
   class="previous-button"
   (click)="togglePreviousPokemons()"
   >previous</mat-button-toggle
@@ -19,5 +20,6 @@
   (click)="toggleNextPokemons()"
   >next</mat-button-toggle
 >
+</mat-button-toggle-group>
 </div>
 

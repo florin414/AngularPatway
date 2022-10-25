@@ -4,11 +4,11 @@
   gutterSize="1px"
   [style.height]="'800px'"
 >
-  <mat-grid-tile *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]">
+  <mat-grid-tile *ngFor="let product of products">
     <mat-card>
-      <img mat-card-avatar src="assets/images/tricou-pikachu.png" />
+      <img mat-card-image src="assets/images/tricou-pikachu.png" />
       <mat-card-subtitle fxLayout fxLayoutAlign="center end">
-        <strong>Pikachu</strong>
+        <strong>{{product.name}}</strong>
       </mat-card-subtitle>
     </mat-card>
   </mat-grid-tile>

@@ -1,11 +1,11 @@
 <div class="project-wrapper">
   <form novalidate (ngSubmit)="save()" [formGroup]="productForm" >
-    <div formArrayName="addNewProduct">
-      <div
-        [formGroupName]="i"
+    <ng-container formArrayName="addNewProduct">
+      <ng-container
         *ngFor="let label of addNewProduct.controls; let i = index"
+        [formGroupName]="i"
+
       >
-        <div class="card-header">Create Product {{ i + 1 }}</div>
         <!-- name -->
         <div class="input-up-container">
           <mat-form-field class="name-form-field">
@@ -16,13 +16,13 @@
               formControlName="name"
               [ngClass]="{
                 'is-invalid':
-                  (addNewProduct.get('name')?.touched ||
-                    addNewProduct.get('name')?.dirty) &&
-                  !addNewProduct.get('name')?.valid
+                  (label.get('name')?.touched||
+                  label.get('name')?.dirty) &&
+                  !label.get('name')?.valid
               }"
             />
             <span class="invalid-feedback">
-              <span *ngIf="addNewProduct.get('name')?.errors?.['required']">
+              <span *ngIf="label.get('name')?.errors?.['required']">
                 Please enter name.
               </span>
             </span>
@@ -36,14 +36,14 @@
               formControlName="description"
               [ngClass]="{
                 'is-invalid':
-                  (addNewProduct.get('description')?.touched ||
-                    addNewProduct.get('description')?.dirty) &&
-                  !addNewProduct.get('description')?.valid
+                  (label.get('description')?.touched ||
+                  label.get('description')?.dirty) &&
+                  !label.get('description')?.valid
               }"
             />
             <span class="invalid-feedback">
               <span
-                *ngIf="addNewProduct.get('description')?.errors?.['required']"
+                *ngIf="label.get('description')?.errors?.['required']"
               >
                 Please enter description.
               </span>
@@ -58,13 +58,13 @@
               formControlName="price"
               [ngClass]="{
                 'is-invalid':
-                  (addNewProduct.get('price')?.touched ||
-                    addNewProduct.get('price')?.dirty) &&
-                  !addNewProduct.get('price')?.valid
+                  (label.get('price')?.touched ||
+                  label.get('price')?.dirty) &&
+                  !label.get('price')?.valid
               }"
             />
             <span class="invalid-feedback">
-              <span *ngIf="addNewProduct.get('price')?.errors?.['required']">
+              <span *ngIf="label.get('price')?.errors?.['required']">
                 Please enter price.
               </span>
             </span>
@@ -88,13 +88,13 @@
               formControlName="imageUrl"
               [ngClass]="{
                 'is-invalid':
-                  (addNewProduct.get('imageUrl')?.touched ||
-                    addNewProduct.get('imageUrl')?.dirty) &&
-                  !addNewProduct.get('imageUrl')?.valid
+                  (label.get('imageUrl')?.touched ||
+                  label.get('imageUrl')?.dirty) &&
+                  !label.get('imageUrl')?.valid
               }"
             />
             <span class="invalid-feedback">
-              <span *ngIf="addNewProduct.get('imageUrl')?.errors?.['required']">
+              <span *ngIf="label.get('imageUrl')?.errors?.['required']">
                 Please enter image url.
               </span>
             </span>
@@ -110,17 +110,20 @@
               formControlName="phone"
               [ngClass]="{
                 'is-invalid':
-                  (addNewProduct.get('phone')?.touched ||
-                    addNewProduct.get('phone')?.dirty) &&
-                  !addNewProduct.get('phone')?.valid
+                  (label.get('phone')?.touched ||
+                  label.get('phone')?.dirty) &&
+                  !label.get('phone')?.valid
               }"
             />
             <span class="invalid-feedback">
-              <span *ngIf="addNewProduct.get('phone')?.errors?.['required']">
+              <span *ngIf="label.get('phone')?.errors?.['required']">
                 Please enter your phone number.
               </span>
-              <span *ngIf="addNewProduct.get('phone')?.errors?.['minlength']">
-                The phone number must not be less than 10 digits.
+              <span *ngIf="label.get('phone')?.errors?.['integerPattern']">
+                Please enter only number.
+              </span>
+              <span *ngIf="label.get('phone')?.errors?.['minlength']">
+                Please enter minLength 10
               </span>
             </span>
           </mat-form-field>
@@ -134,8 +137,8 @@
             </mat-select>
           </mat-form-field>
         </div>
-      </div>
-        </div>
+      </ng-container>
+        </ng-container>
 
 
     <!-- add new product button -->
@@ -143,7 +146,7 @@
           mat-raised-button
           color="primary"
           type="button"
-          [disabled]="!addNewProduct.valid"
+          [disabled]="addNewProduct.invalid"
           (click)="newProduct()"
         >
           ADD NEW PRODUCT
@@ -160,6 +163,7 @@
             : 'Disabled until the form data is valid'
         "
         [disabled]="!addNewProduct.valid"
+        routerLink="/product-list"
       >
         SAVE
       </button>

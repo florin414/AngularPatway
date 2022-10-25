@@ -1,8 +1,7 @@
-import { Subscription } from 'rxjs';
 import { PokemonService } from './../../services/pokemon.service';
 import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-pokemon-detail',
@@ -15,7 +14,6 @@ export class PokemonDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private pokemonService: PokemonService
   ) {}
 
@@ -27,13 +25,9 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   getPokemonDetail(name: string):void{
-    // this.pokemonService.getPokemonDetailsByName(name).subscribe({
-    //   next: pokemon => this.pokemonDetails = pokemon,
-    // });
-  }
-
-  onBack(): void{
-    this.router.navigate(['/pokemons']);
+    this.pokemonService.getPokemonDetailsByName(name).subscribe({
+      next: pokemon => this.pokemonDetails = pokemon,
+    });
   }
 
 }

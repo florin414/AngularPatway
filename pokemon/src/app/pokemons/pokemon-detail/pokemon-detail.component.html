@@ -1,13 +1,30 @@
-<h1>
-  Pokemon Detail
-</h1>
-<mat-grid-list cols="1" rowHeight="200px">
-  <app-pokemon-statistics></app-pokemon-statistics>
-  <app-pokemon-profile></app-pokemon-profile>
-  <app-pokemon-evolution></app-pokemon-evolution>
-  <app-pokemon-damage></app-pokemon-damage>
+<h1>{{pokemonDetails?.name}}</h1>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item
+        ><strong>Height:</strong>{{ pokemonDetails?.height }} m</mat-list-item
+      >
+      <mat-list-item><strong>Catch Rate:</strong></mat-list-item>
+      <mat-list-item><strong>Egg Groups:</strong></mat-list-item>
+      <mat-list-item
+        ><strong>Abilities:</strong>
+        <mat-label *ngFor="let abilitie of pokemonDetails?.abilities">
+          {{ abilitie.ability.name }},</mat-label
+        ></mat-list-item
+      >
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item
+        ><strong>Weight:</strong> {{ pokemonDetails?.weight }} kg</mat-list-item
+      >
+      <mat-list-item><strong>Gender Ratio:</strong></mat-list-item>
+      <mat-list-item><strong>Hatch Steps:</strong></mat-list-item>
+      <mat-list-item><strong>EVs:</strong></mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
 </mat-grid-list>
 
-
-
-
+<button routerLink="/pokemons">On Back</button>

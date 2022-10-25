@@ -12,12 +12,12 @@ export class PokemonListComponent implements OnInit {
   pokemons: Pokemon[] = [];
   private url?: string = 'https://pokeapi.co/api/v2/pokemon';
   private urlNext: string | undefined;
-  isNextPokemons: boolean = true;
+  isPreviousButtonDisabled: boolean = true;
   pokemonDetails!: PokemonDetails;
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
-    if (this.url != null && this.isNextPokemons) {
+    if (this.url != null) {
       this.pokemonService.getPokemonList(this.url).subscribe({
         next: (pokemons) => {
           this.pokemons = pokemons.results;
@@ -33,10 +33,10 @@ export class PokemonListComponent implements OnInit {
       this.pokemonService.getPokemonList(url).subscribe({
         next: (pokemons) => {
           this.pokemons = pokemons.results;
-          if(pokemons.previous!=null){
+          if (pokemons.previous != null) {
             this.url = pokemons.previous;
           }
-          if(pokemons.next!=null){
+          if (pokemons.next != null) {
             this.urlNext = pokemons.next;
           }
         },
@@ -50,10 +50,10 @@ export class PokemonListComponent implements OnInit {
       this.pokemonService.getPokemonList(url).subscribe({
         next: (pokemons) => {
           this.pokemons = pokemons.results;
-          if(pokemons.previous!=null){
+          if (pokemons.previous != null) {
             this.url = pokemons.previous;
           }
-          if(pokemons.next!=null){
+          if (pokemons.next != null) {
             this.urlNext = pokemons.next;
           }
         },
