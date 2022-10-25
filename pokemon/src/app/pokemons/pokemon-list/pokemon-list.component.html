@@ -6,7 +6,7 @@
   [style.height]="'1600px'"
 >
   <mat-grid-tile *ngFor="let pokemon of pokemons">
-    <app-pokemon-card [pokemonDetailUrl]="pokemon.url"></app-pokemon-card>
+    <app-pokemon-card [pokemonDetailUrl]='pokemon.url'></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>
 <mat-button-toggle-group>

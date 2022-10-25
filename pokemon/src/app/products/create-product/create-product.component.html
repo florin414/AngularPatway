@@ -25,6 +25,12 @@
               <span *ngIf="label.get('name')?.errors?.['required']">
                 Please enter name.
               </span>
+              <span *ngIf="label.get('name')?.errors?.['minlength']">
+                Please enter min 3 charactes.
+              </span>
+              <span *ngIf="label.get('name')?.errors?.['numbersAndAlphabetsOnly']">
+                Please enter numbers and alphabets only.
+              </span>
             </span>
           </mat-form-field>
           <!-- description -->
@@ -42,10 +48,14 @@
               }"
             />
             <span class="invalid-feedback">
-              <span
-                *ngIf="label.get('description')?.errors?.['required']"
-              >
+              <span *ngIf="label.get('description')?.errors?.['required']">
                 Please enter description.
+              </span>
+              <span *ngIf="label.get('description')?.errors?.['numbersAndAlphabetsOnly']">
+                Please enter numbers and alphabets only.
+              </span>
+              <span *ngIf="label.get('description')?.errors?.['minlength']">
+                Please enter min 3 charactes.
               </span>
             </span>
           </mat-form-field>
@@ -67,17 +77,31 @@
               <span *ngIf="label.get('price')?.errors?.['required']">
                 Please enter price.
               </span>
+              <span *ngIf="label.get('price')?.errors?.['numbersWith2DecimalOnly']">
+                Please enter numbers with 2 decimal.
+              </span>
             </span>
           </mat-form-field>
         </div>
         <div class="input-down-container">
-          <!-- select -->
-          <mat-form-field class="select-form-field">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option value="one">First option</mat-option>
-              <mat-option value="two">Second option</mat-option>
+          <!-- category -->
+          <mat-form-field class="category-form-field">
+            <mat-label>Category</mat-label>
+            <mat-select formControlName="category" [ngClass]="{
+              'is-invalid':
+                (label.get('category')?.touched ||
+                label.get('category')?.dirty) &&
+                !label.get('category')?.valid
+            }">
+              <mat-option value="Electronics">Electronics</mat-option>
+              <mat-option value="Cloths">Cloths</mat-option>
+              <mat-option value="Blankets">Blankets</mat-option>
             </mat-select>
+            <span class="invalid-feedback">
+              <span *ngIf="label.get('category')?.errors?.['required']">
+                Please select an option.
+              </span>
+            </span>
           </mat-form-field>
         <!-- image url  -->
           <mat-form-field class="image-url-form-field">
@@ -96,6 +120,9 @@
             <span class="invalid-feedback">
               <span *ngIf="label.get('imageUrl')?.errors?.['required']">
                 Please enter image url.
+              </span>
+              <span *ngIf="label.get('imageUrl')?.errors?.['imageUrl']">
+                Please enter image url valid.
               </span>
             </span>
           </mat-form-field>
@@ -119,23 +146,22 @@
               <span *ngIf="label.get('phone')?.errors?.['required']">
                 Please enter your phone number.
               </span>
-              <span *ngIf="label.get('phone')?.errors?.['integerPattern']">
+              <span *ngIf="label.get('phone')?.errors?.['numbersOnly']">
                 Please enter only number.
               </span>
-              <span *ngIf="label.get('phone')?.errors?.['minlength']">
-                Please enter minLength 10
+              <span *ngIf="label.get('phone')?.errors?.['maxlength']">
+                Please enter maxLength 10
               </span>
             </span>
           </mat-form-field>
-        <!-- country -->
-          <mat-form-field class="select-number-form-field">
-            <mat-label>Select</mat-label>
-            <mat-select>
-              <mat-option *ngFor="let country of countries" [value]="countries">
-                {{ country.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
+        <!-- select -->
+        <mat-form-field class="select-form-field">
+          <mat-label>Select</mat-label>
+          <mat-select>
+            <mat-option value="Mobile">Mobile</mat-option>
+            <mat-option value="LandLine">LandLine</mat-option>
+          </mat-select>
+        </mat-form-field>
         </div>
       </ng-container>
         </ng-container>
@@ -163,16 +189,15 @@
             : 'Disabled until the form data is valid'
         "
         [disabled]="!addNewProduct.valid"
-        routerLink="/product-list"
       >
         SAVE
       </button>
     </div>
-    <!-- remove btn -->
-    <div class="remove-btn">
-      <button mat-raised-button routerLink="/login">REMOVE</button>
-    </div>
   </form>
+  <!-- reset btn -->
+  <div class="reset-btn">
+    <button mat-raised-button (click)="reset()">RESET</button>
+  </div>
 </div>
 <br />Dirty: {{ productForm.dirty }} <br />Touched: {{ productForm.touched }}
 <br />Valid: {{ productForm.valid }} <br />Value:

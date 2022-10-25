@@ -1,10 +1,8 @@
 import { Product } from './../../models/product/product';
 import { CreateProductService } from './../../services/create-product.service';
-import { Country } from '../../models/product/country';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { CustomOnlyNumberValidatorService } from 'src/app/services/custom-only-number-validator.service';
-
+import { CustomValidatorService } from 'src/app/services/custom-validator.service';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
@@ -12,7 +10,7 @@ import { CustomOnlyNumberValidatorService } from 'src/app/services/custom-only-n
 })
 export class CreateProductComponent implements OnInit {
   productForm!: FormGroup;
-  countries: Country[] = [];
+  messageName: string = '';
 
   get addNewProduct() {
     return this.productForm.controls['addNewProduct'] as FormArray;
@@ -21,34 +19,56 @@ export class CreateProductComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private createProductService: CreateProductService,
-    private numberValidationService: CustomOnlyNumberValidatorService
+    private customValidationService: CustomValidatorService
   ) {}
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       addNewProduct: this.formBuilder.array([this.buildNewProduct()]),
     });
-    this.createProductService.getCountries().subscribe({
-      next: (countries) => {
-        this.countries = countries;
-      },
-    });
   }
 
   buildNewProduct(): FormGroup {
     return this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      price: ['', [Validators.required]],
+      name: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          this.customValidationService.customNumbersAndAlphabetsOnlyValidator(),
+        ],
+      ],
+      category: ['', Validators.required],
+      description: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3),
+          this.customValidationService.customNumbersAndAlphabetsOnlyValidator(),
+        ],
+      ],
+      price: [
+        '',
+        [
+          Validators.required,
+          this.customValidationService.customNumbersWith2DecimalPlacesOnlyValidator(),
+        ],
+      ],
       phone: [
         '',
         [
           Validators.required,
-          this.numberValidationService.customMassRangeValidator(),
-          Validators.minLength(10),
+          this.customValidationService.customNumbersOnlyValidator(),
+          Validators.maxLength(10),
         ],
       ],
-      imageUrl: ['', [Validators.required]],
+      imageUrl: [
+        '',
+        [
+          Validators.required,
+          this.customValidationService.customImageUrlValidator(),
+        ],
+      ],
     });
   }
 
@@ -56,14 +76,23 @@ export class CreateProductComponent implements OnInit {
     this.addNewProduct.push(this.buildNewProduct());
   }
 
+  reset(): void{
+    while (this.addNewProduct.length > 0) {
+      this.addNewProduct.removeAt(0);
+    }
+    this.newProduct();
+  }
+
   save(): void {
     console.log('Saved: ' + JSON.stringify(this.productForm.value));
     let product = {} as Product;
     product.name = 'name';
     product.description = 'desc';
-    product.imageUrl = 'sdsad';
+    product.imageUrl = '';
     product.phone = 323;
-    product.price = 212;
+    product.price = 212.39;
+    product.category = 0;
+    product.select = 1;
 
     this.createProductService.addProduct(product).subscribe();
   }

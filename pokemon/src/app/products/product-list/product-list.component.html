@@ -5,11 +5,7 @@
   [style.height]="'800px'"
 >
   <mat-grid-tile *ngFor="let product of products">
-    <mat-card>
-      <img mat-card-image src="assets/images/tricou-pikachu.png" />
-      <mat-card-subtitle fxLayout fxLayoutAlign="center end">
-        <strong>{{product.name}}</strong>
-      </mat-card-subtitle>
-    </mat-card>
+    <app-product-card [productCard]='product'
+    ></app-product-card>
   </mat-grid-tile>
 </mat-grid-list>

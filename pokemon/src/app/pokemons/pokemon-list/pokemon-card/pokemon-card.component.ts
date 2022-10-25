@@ -10,7 +10,7 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 export class PokemonCardComponent implements OnInit{
 
   @Input() pokemonDetailUrl = '';
-  pokemonDetails!: PokemonDetails;
+  pokemonDetails: PokemonDetails = new PokemonDetails;
 
   constructor(private pokemonService: PokemonService){}
 
