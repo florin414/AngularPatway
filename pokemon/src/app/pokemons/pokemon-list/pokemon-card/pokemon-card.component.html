@@ -1,8 +1,12 @@
-<mat-card [routerLink]="['/pokemon', pokemonDetails.name]">
+<mat-card>
   <img mat-card-image [src]="pokemonDetails.sprites.front_default" />
   <mat-card-subtitle fxLayoutAlign="center center">
     <strong>
-      <a>{{ pokemonDetails.name }}</a>
+      <a
+        [routerLink]="['/pokemon', pokemonDetails.name]"
+        style="color: rgb(127, 126, 126)"
+        >{{ pokemonDetails.name }}</a
+      >
     </strong>
   </mat-card-subtitle>
 </mat-card>

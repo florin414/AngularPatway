@@ -8,6 +8,7 @@ import { PokemonList } from '../models/pokemon/pokemon-list';
   providedIn: 'root',
 })
 export class PokemonService {
+  private pokemonDetailsUrl = 'https://pokeapi.co/api/v2/pokemon/';
   constructor(private http: HttpClient) {}
 
   getPokemonList(pokemonApiUrl: string): Observable<PokemonList> {
@@ -20,6 +21,13 @@ export class PokemonService {
   getPokemonDetails(pokemonDetailsUrl: string): Observable<PokemonDetails> {
     return this.http.get<PokemonDetails>(pokemonDetailsUrl).pipe(
       // tap((data) => console.log('All: ', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  getPokemonDetailsByName(pokemonName: string): Observable<PokemonDetails> {
+    return this.http.get<PokemonDetails>(`${this.pokemonDetailsUrl}${pokemonName}/`).pipe(
+      // tap((data) => console.log('All: ', JSON.stringify(data.name))),
       catchError(this.handleError)
     );
   }
