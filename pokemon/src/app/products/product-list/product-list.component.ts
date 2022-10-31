@@ -5,21 +5,14 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
 })
+export class ProductListComponent implements OnInit {
+  products: Product[];
 
-export class ProductListComponent  implements OnInit {
-  products: Product[] = [];
+  constructor(private productService: CreateProductService) {}
 
-  constructor(private productService: CreateProductService){}
-
-  ngOnInit(): void {
-        this.productService.getProductList().subscribe({
-          next: (product) => {
-            this.products = product;
-          },
-        });
+  async ngOnInit(){
+    this.products = await this.productService.getProductList().then();
   }
-
-
 }

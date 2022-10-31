@@ -9,7 +9,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pokemon-detail.component.css'],
 })
 export class PokemonDetailComponent implements OnInit {
-
   pokemonDetails: PokemonDetails | undefined;
 
   constructor(
@@ -18,16 +17,15 @@ export class PokemonDetailComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-      const name = String(this.route.snapshot.paramMap.get('name'));
-      if(name){
-        this.getPokemonDetail(name);
-      }
+    const name = String(this.route.snapshot.paramMap.get('name'));
+    if (name) {
+      this.getPokemonDetail(name);
+    }
   }
 
-  getPokemonDetail(name: string):void{
-    this.pokemonService.getPokemonDetailsByName(name).subscribe({
-      next: pokemon => this.pokemonDetails = pokemon,
-    });
+  getPokemonDetail(name: string): void {
+    this.pokemonService
+      .getPokemonDetailsByName(name)
+      .then((pokemon) => (this.pokemonDetails = pokemon));
   }
-
 }

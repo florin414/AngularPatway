@@ -1,39 +1,34 @@
-import { catchError, Observable, tap, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 import { Product } from './../models/product/product';
+import { Category } from '../models/product/category';
+import { Select } from '../models/product/select';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreateProductService {
-  private productUrl = 'https://localhost:7088/Product';
+  private productUrl = environment.productUrl;
+  product: Product = new Product;
 
   constructor(private http: HttpClient) {}
 
-  getProductList(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productUrl).pipe(
-      tap((data) => console.log('All: ', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+  async getProductList(){
+    return await this.http.get<Product[]>(this.productUrl).toPromise();
   }
 
-  addProduct(product: Product): Observable<Product>{
-    return this.http.post<Product>(this.productUrl, product, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
-  }
+  async addProduct(product: Product): Promise<Product>{
 
-  private handleError(err: HttpErrorResponse): Observable<never> {
-    let errorMessage = '';
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(() => errorMessage);
+    this.product.category = Category.Blankets;
+    this.product.description = "dsad";
+    this.product.imageUrl = "https://farm4.staticflickr.com/3894/15008518202_c265dfa55f_h.jpg";
+    this.product.name = "test";
+    this.product.phone = 232;
+    this.product.price= 434;
+    this.product.select = Select.LandLine;
+
+    return await this.http
+      .post<Product>(this.productUrl, this.product).toPromise();
   }
 }

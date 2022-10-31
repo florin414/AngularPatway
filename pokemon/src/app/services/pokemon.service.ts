@@ -1,6 +1,6 @@
+import { environment } from './../../environments/environment';
 import { PokemonDetails } from './../models/pokemon/pokemon-details';
-import { catchError, filter, map, Observable, tap, throwError } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PokemonList } from '../models/pokemon/pokemon-list';
 
@@ -8,38 +8,23 @@ import { PokemonList } from '../models/pokemon/pokemon-list';
   providedIn: 'root',
 })
 export class PokemonService {
-  private pokemonDetailsUrl = 'https://pokeapi.co/api/v2/pokemon/';
+
   constructor(private http: HttpClient) {}
 
-  getPokemonList(pokemonApiUrl: string): Observable<PokemonList> {
-    return this.http.get<PokemonList>(pokemonApiUrl).pipe(
-      // tap((data) => console.log('All: ', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+  private pokemonDetailsUrl = environment.pokemonBaseUrl;
+
+  async getPokemonList(pokemonApiUrl: string): Promise<PokemonList>{
+    return await this.http.get<PokemonList>(pokemonApiUrl)
+    .toPromise();
   }
 
-  getPokemonDetails(pokemonDetailsUrl: string): Observable<PokemonDetails> {
-    return this.http.get<PokemonDetails>(pokemonDetailsUrl).pipe(
-      // tap((data) => console.log('All: ', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+  async getPokemonDetails(pokemonDetailsUrl: string): Promise<PokemonDetails> {
+    return await this.http.get<PokemonDetails>(pokemonDetailsUrl)
+    .toPromise();
   }
 
-  getPokemonDetailsByName(pokemonName: string): Observable<PokemonDetails> {
-    return this.http.get<PokemonDetails>(`${this.pokemonDetailsUrl}${pokemonName}/`).pipe(
-      // tap((data) => console.log('All: ', JSON.stringify(data.name))),
-      catchError(this.handleError)
-    );
-  }
-
-  private handleError(err: HttpErrorResponse): Observable<never> {
-    let errorMessage = '';
-    if (err.error instanceof ErrorEvent) {
-      errorMessage = `An error occurred: ${err.error.message}`;
-    } else {
-      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
-    }
-    console.error(errorMessage);
-    return throwError(() => errorMessage);
+  async getPokemonDetailsByName(pokemonName: string): Promise<PokemonDetails> {
+    return await this.http.get<PokemonDetails>(`${this.pokemonDetailsUrl}${pokemonName}/`)
+    .toPromise();
   }
 }

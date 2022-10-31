@@ -1,4 +1,4 @@
-<div>
+<ng-container>
   <mat-grid-list
   cols="4"
   rowHeight="fit"
@@ -9,17 +9,18 @@
     <app-pokemon-card [pokemonDetailUrl]='pokemon.url'></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>
-<mat-button-toggle-group>
+  <mat-button-toggle-group>
+    <mat-button-toggle
+    class="previous-button"
+    (click)="togglePreviousPokemons()"
+    >previous</mat-button-toggle
+  >
   <mat-button-toggle
-  class="previous-button"
-  (click)="togglePreviousPokemons()"
-  >previous</mat-button-toggle
->
-<mat-button-toggle
-  class="next-button"
-  (click)="toggleNextPokemons()"
-  >next</mat-button-toggle
->
-</mat-button-toggle-group>
-</div>
+    class="next-button"
+    (click)="toggleNextPokemons()"
+    >next</mat-button-toggle
+  >
+  </mat-button-toggle-group>
+</ng-container>
+
 

@@ -1,5 +1,5 @@
 <div class="project-wrapper">
-  <form novalidate (ngSubmit)="save()" [formGroup]="productForm" >
+  <form novalidate [formGroup]="productForm" >
     <ng-container formArrayName="addNewProduct">
       <ng-container
         *ngFor="let label of addNewProduct.controls; let i = index"
@@ -157,7 +157,7 @@
         <!-- select -->
         <mat-form-field class="select-form-field">
           <mat-label>Select</mat-label>
-          <mat-select>
+          <mat-select formControlName="select">
             <mat-option value="Mobile">Mobile</mat-option>
             <mat-option value="LandLine">LandLine</mat-option>
           </mat-select>
@@ -189,6 +189,7 @@
             : 'Disabled until the form data is valid'
         "
         [disabled]="!addNewProduct.valid"
+        (click)="save()"
       >
         SAVE
       </button>

@@ -6,7 +6,7 @@ export class Product{
   description: string = '';
   price: number = 0 ;
   imageUrl: string = '';
-  category!: Category;
+  category: Category = 1;
   phone: number = 0;
-  select!: Select;
+  select: Select = 1;
 }

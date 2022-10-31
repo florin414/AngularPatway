@@ -1,6 +1,8 @@
+import { FormsModule } from '@angular/forms';
+import { SerachComponent } from './shared/serach/serach.component';
+import { HeaderComponent } from './shared/header-component/header.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from './shared/material.module';
-import { LoginComponent } from './login/login.component';
 import { PokemonModule } from './pokemons/pokemon.module';
 import { ProductModule } from './products/product.module';
 import { NgModule } from '@angular/core';
@@ -12,7 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
-    LoginComponent
+    HeaderComponent,
+    SerachComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     PokemonModule,
     MaterialModule,
     HttpClientModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

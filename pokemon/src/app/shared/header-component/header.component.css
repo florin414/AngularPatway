@@ -1,0 +1,29 @@
+.app-sidenav-container {
+  flex: 1;
+}
+
+span {
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+span:hover {
+  background-color: white;
+}
+
+span.active {
+  background-color: white;
+}
+
+.search-container{
+  background-color: white;
+  position: relative;
+  left: 1000px;
+}
+
+.toggle-container{
+  position: relative;
+  left: 1100px;
+  transform: scale(1.2);
+}

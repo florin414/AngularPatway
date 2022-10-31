@@ -1,17 +1,22 @@
 import { Product } from './../../models/product/product';
 import { CreateProductService } from './../../services/create-product.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomValidatorService } from 'src/app/services/custom-validator.service';
+import { DirtyComponent } from 'src/app/shared/dirty-component';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css'],
 })
-export class CreateProductComponent implements OnInit {
+export class CreateProductComponent
+  implements OnInit, OnDestroy, DirtyComponent
+{
   productForm!: FormGroup;
   messageName: string = '';
-
+  subscription!: Subscription;
+  private isDirty = false;
   get addNewProduct() {
     return this.productForm.controls['addNewProduct'] as FormArray;
   }
@@ -21,11 +26,21 @@ export class CreateProductComponent implements OnInit {
     private createProductService: CreateProductService,
     private customValidationService: CustomValidatorService
   ) {}
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  canDeactivate() {
+    return this.isDirty;
+  }
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
       addNewProduct: this.formBuilder.array([this.buildNewProduct()]),
     });
+    this.subscription = this.addNewProduct.valueChanges.subscribe(
+      () => (this.isDirty = true)
+    );
   }
 
   buildNewProduct(): FormGroup {
@@ -38,6 +53,7 @@ export class CreateProductComponent implements OnInit {
           this.customValidationService.customNumbersAndAlphabetsOnlyValidator(),
         ],
       ],
+      select: [''],
       category: ['', Validators.required],
       description: [
         '',
@@ -76,24 +92,18 @@ export class CreateProductComponent implements OnInit {
     this.addNewProduct.push(this.buildNewProduct());
   }
 
-  reset(): void{
+  reset(): void {
     while (this.addNewProduct.length > 0) {
       this.addNewProduct.removeAt(0);
     }
     this.newProduct();
   }
 
-  save(): void {
-    console.log('Saved: ' + JSON.stringify(this.productForm.value));
-    let product = {} as Product;
-    product.name = 'name';
-    product.description = 'desc';
-    product.imageUrl = '';
-    product.phone = 323;
-    product.price = 212.39;
-    product.category = 0;
-    product.select = 1;
+  save() {
+    console.log('Saved: ' + JSON.stringify(this.addNewProduct.value));
 
-    this.createProductService.addProduct(product).subscribe();
+    this.addNewProduct.value.array.forEach((product: Product) =>
+      this.createProductService.addProduct(product).then()
+    );
   }
 }

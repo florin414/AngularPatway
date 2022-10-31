@@ -10,15 +10,13 @@ import { Component, Input, OnChanges, OnInit } from '@angular/core';
 export class PokemonCardComponent implements OnInit{
 
   @Input() pokemonDetailUrl = '';
-  pokemonDetails: PokemonDetails = new PokemonDetails;
+  pokemonDetails: PokemonDetails | undefined;
 
   constructor(private pokemonService: PokemonService){}
 
   ngOnInit(): void {
-    this.pokemonService.getPokemonDetails(this.pokemonDetailUrl).subscribe({
-      next: (pokemonDetails) => {
-        this.pokemonDetails = pokemonDetails;
-      }
-    });
+    this.pokemonService.getPokemonDetails(this.pokemonDetailUrl).then(
+      p => this.pokemonDetails = p
+    );
   }
 }

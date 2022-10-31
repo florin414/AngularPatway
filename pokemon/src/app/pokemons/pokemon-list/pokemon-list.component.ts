@@ -9,7 +9,7 @@ import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
   styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent implements OnInit {
-  pokemons: Pokemon[] = [];
+  pokemons: Pokemon[] | undefined;
   private url?: string = 'https://pokeapi.co/api/v2/pokemon';
   private urlNext: string | undefined;
   isPreviousButtonDisabled: boolean = true;
@@ -18,11 +18,9 @@ export class PokemonListComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.url != null) {
-      this.pokemonService.getPokemonList(this.url).subscribe({
-        next: (pokemons) => {
-          this.pokemons = pokemons.results;
-          this.urlNext = pokemons.next;
-        },
+      this.pokemonService.getPokemonList(this.url).then((pokemons) => {
+        this.pokemons = pokemons?.results;
+        this.urlNext = pokemons?.next;
       });
     }
   }
@@ -30,16 +28,14 @@ export class PokemonListComponent implements OnInit {
   toggleNextPokemons(): void {
     let url = this.urlNext;
     if (url != null) {
-      this.pokemonService.getPokemonList(url).subscribe({
-        next: (pokemons) => {
-          this.pokemons = pokemons.results;
-          if (pokemons.previous != null) {
-            this.url = pokemons.previous;
-          }
-          if (pokemons.next != null) {
-            this.urlNext = pokemons.next;
-          }
-        },
+      this.pokemonService.getPokemonList(url).then((pokemons) => {
+        this.pokemons = pokemons?.results;
+        if (pokemons?.previous != null) {
+          this.url = pokemons.previous;
+        }
+        if (pokemons?.next != null) {
+          this.urlNext = pokemons.next;
+        }
       });
     }
   }
@@ -47,16 +43,14 @@ export class PokemonListComponent implements OnInit {
   togglePreviousPokemons(): void {
     let url = this.url;
     if (url != null) {
-      this.pokemonService.getPokemonList(url).subscribe({
-        next: (pokemons) => {
-          this.pokemons = pokemons.results;
-          if (pokemons.previous != null) {
-            this.url = pokemons.previous;
-          }
-          if (pokemons.next != null) {
-            this.urlNext = pokemons.next;
-          }
-        },
+      this.pokemonService.getPokemonList(url).then((pokemons) => {
+        this.pokemons = pokemons?.results;
+        if (pokemons?.previous != null) {
+          this.url = pokemons.previous;
+        }
+        if (pokemons?.next != null) {
+          this.urlNext = pokemons.next;
+        }
       });
     }
   }
