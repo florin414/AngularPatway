@@ -4,18 +4,19 @@ import { environment } from 'src/environments/environment';
 import { Product } from './../models/product/product';
 import { Category } from '../models/product/category';
 import { Select } from '../models/product/select';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CreateProductService {
   private productUrl = environment.productUrl;
-  product: Product = new Product();
+  private product: Product = new Product();
 
   constructor(private http: HttpClient) {}
 
   async getProductList() {
-    return await this.http.get<Product[]>(this.productUrl).toPromise();
+    return await firstValueFrom(this.http.get<Product[]>(this.productUrl));
   }
 
   async addProduct(product: Product): Promise<Product> {
@@ -28,8 +29,7 @@ export class CreateProductService {
     this.product.price = 434;
     this.product.select = Select.LandLine;
 
-    return await this.http
-      .post<Product>(this.productUrl, this.product)
-      .toPromise();
+    return await firstValueFrom(this.http
+      .post<Product>(this.productUrl, this.product));
   }
 }
