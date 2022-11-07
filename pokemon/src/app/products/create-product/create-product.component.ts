@@ -1,5 +1,5 @@
 import { CreateProductService } from './../../services/create-product.service';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, OnChanges, DoCheck } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -10,13 +10,14 @@ import {
 import { CustomValidatorService } from 'src/app/services/custom-validator.service';
 import { Subscription } from 'rxjs';
 import { DirtyCheckComponent } from 'src/app/shared/dirty-check-component';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent
-  implements OnInit, OnDestroy, DirtyCheckComponent
+  implements OnInit, DoCheck, DirtyCheckComponent
 {
   protected productForm: FormGroup;
   private subscription: Subscription;
@@ -29,7 +30,8 @@ export class CreateProductComponent
   constructor(
     private formBuilder: FormBuilder,
     private createProductService: CreateProductService,
-    private customValidationService: CustomValidatorService
+    private customValidationService: CustomValidatorService,
+    private router: Router
   ) {}
 
   ngOnDestroy(): void {
@@ -47,6 +49,12 @@ export class CreateProductComponent
     this.subscription = this.product.valueChanges.subscribe(
       () => (this.isDirty = true)
     );
+  }
+
+  ngDoCheck(): void {
+    if(this.productForm.valid){
+      this.isDirty = false;
+    }
   }
 
   private buildNewProduct(): FormGroup {
@@ -92,6 +100,8 @@ export class CreateProductComponent
 
   protected save(): void {
     console.log('Saved: ' + JSON.stringify(this.product.value));
+
+    this.router.navigate(['/product-list']);
 
     for (let product of this.product.value) {
       this.createProductService.addProduct(product).then();

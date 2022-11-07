@@ -13,6 +13,6 @@ export class LoaderService {
   }
 
   hide(): void {
-    (this.isLoading.next(false);
+    this.isLoading.next(false);
   }
 }
