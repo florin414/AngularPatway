@@ -1,4 +1,4 @@
 export class Specy{
-  name: string = '';
-  url: string = '';
+  name: string;
+  url: string;
 }

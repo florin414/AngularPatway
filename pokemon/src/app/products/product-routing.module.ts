@@ -5,9 +5,10 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { ProductListGuard } from './product-list/product-list.guard';
 import { DirtyCheckGuard } from './create-product/dirty-check.guard';
 const routes: Routes = [
-  { path: '',
+  {
+    path: '',
     component: CreateProductComponent,
-    canDeactivate: [DirtyCheckGuard]
+    canDeactivate: [DirtyCheckGuard],
   },
   {
     path: 'product-list',

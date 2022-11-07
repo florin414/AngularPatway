@@ -5,7 +5,7 @@
   gutterSize="1px"
   [style.height]="'1600px'"
 >
-  <mat-grid-tile *ngFor="let pokemon of pokemons">
+<mat-grid-tile *ngFor="let pokemon of pokemons">
     <app-pokemon-card [pokemonDetailUrl]='pokemon.url'></app-pokemon-card>
   </mat-grid-tile>
 </mat-grid-list>

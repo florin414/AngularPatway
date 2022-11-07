@@ -23,8 +23,8 @@ export class PokemonDetails{
   name: string = '';
   order: number = 0;
   past_types: PastType[] = [];
-  species!: Specy;
-  sprites!: Sprite;
+  species: Specy;
+  sprites: Sprite;
   stats: Stats[] = [];
   types: Types[] = [];
   weight: number = 0;

@@ -1,205 +1,205 @@
-<div class="project-wrapper">
-  <form novalidate [formGroup]="productForm" >
-    <ng-container formArrayName="addNewProduct">
+<div>
+  <form novalidate [formGroup]="productForm">
+    <ng-container formArrayName="product">
       <ng-container
-        *ngFor="let label of addNewProduct.controls; let i = index"
+        *ngFor="let label of product.controls; let i = index"
         [formGroupName]="i"
-
       >
-        <!-- name -->
-        <div class="input-up-container">
-          <mat-form-field class="name-form-field">
-            <mat-label>Name</mat-label>
-            <input
-              matInput
-              placeholder="Name (required)"
-              formControlName="name"
-              [ngClass]="{
-                'is-invalid':
-                  (label.get('name')?.touched||
-                  label.get('name')?.dirty) &&
-                  !label.get('name')?.valid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('name')?.errors?.['required']">
+        <div class="row">
+          <div class="input-up-container">
+            <!-- name -->
+            <mat-form-field class="name-form-field">
+              <mat-label>Name</mat-label>
+              <input
+                matInput
+                placeholder="Name (required)"
+                formControlName="name"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('name')?.touched || label.get('name')?.dirty) &&
+                    !label.get('name')?.valid
+                }"
+              />
+              <mat-error *ngIf="label.get('name')?.errors?.['required']">
                 Please enter name.
-              </span>
-              <span *ngIf="label.get('name')?.errors?.['minlength']">
+              </mat-error>
+              <mat-error *ngIf="label.get('name')?.errors?.['minlength']">
                 Please enter min 3 charactes.
-              </span>
-              <span *ngIf="label.get('name')?.errors?.['numbersAndAlphabetsOnly']">
+              </mat-error>
+              <mat-error
+                *ngIf="label.get('name')?.errors?.['numbersAndAlphabetsOnly']"
+              >
                 Please enter numbers and alphabets only.
-              </span>
-            </span>
-          </mat-form-field>
-          <!-- description -->
-          <mat-form-field class="description-form-field">
-            <mat-label>Description</mat-label>
-            <input
-              matInput
-              placeholder="Description (required)"
-              formControlName="description"
-              [ngClass]="{
-                'is-invalid':
-                  (label.get('description')?.touched ||
-                  label.get('description')?.dirty) &&
-                  !label.get('description')?.valid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('description')?.errors?.['required']">
+              </mat-error>
+            </mat-form-field>
+            <!-- description -->
+            <mat-form-field class="description-form-field">
+              <mat-label>Description</mat-label>
+              <input
+                matInput
+                placeholder="Description (required)"
+                formControlName="description"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('description')?.touched ||
+                      label.get('description')?.dirty) &&
+                    !label.get('description')?.valid
+                }"
+              />
+              <mat-error *ngIf="label.get('description')?.errors?.['required']">
                 Please enter description.
-              </span>
-              <span *ngIf="label.get('description')?.errors?.['numbersAndAlphabetsOnly']">
+              </mat-error>
+              <mat-error
+                *ngIf="label.get('description')?.errors?.['numbersAndAlphabetsOnly']"
+              >
                 Please enter numbers and alphabets only.
-              </span>
-              <span *ngIf="label.get('description')?.errors?.['minlength']">
+              </mat-error>
+              <mat-error
+                *ngIf="label.get('description')?.errors?.['minlength']"
+              >
                 Please enter min 3 charactes.
-              </span>
-            </span>
-          </mat-form-field>
-          <!-- price -->
-          <mat-form-field class="price-form-field">
-            <mat-label>Price</mat-label>
-            <input
-              matInput
-              placeholder="Price (required)"
-              formControlName="price"
-              [ngClass]="{
-                'is-invalid':
-                  (label.get('price')?.touched ||
-                  label.get('price')?.dirty) &&
-                  !label.get('price')?.valid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('price')?.errors?.['required']">
+              </mat-error>
+            </mat-form-field>
+            <!-- price -->
+            <mat-form-field class="price-form-field">
+              <mat-label>Price</mat-label>
+              <input
+                matInput
+                placeholder="Price (required)"
+                formControlName="price"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('price')?.touched ||
+                      label.get('price')?.dirty) &&
+                    !label.get('price')?.valid
+                }"
+              />
+              <mat-error *ngIf="label.get('price')?.errors?.['required']">
                 Please enter price.
-              </span>
-              <span *ngIf="label.get('price')?.errors?.['numbersWith2DecimalOnly']">
+              </mat-error>
+              <mat-error
+                *ngIf="label.get('price')?.errors?.['numbersWith2DecimalOnly']"
+              >
                 Please enter numbers with 2 decimal.
-              </span>
-            </span>
-          </mat-form-field>
+              </mat-error>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="input-down-container">
-          <!-- category -->
-          <mat-form-field class="category-form-field">
-            <mat-label>Category</mat-label>
-            <mat-select formControlName="category" [ngClass]="{
-              'is-invalid':
-                (label.get('category')?.touched ||
-                label.get('category')?.dirty) &&
-                !label.get('category')?.valid
-            }">
-              <mat-option value="Electronics">Electronics</mat-option>
-              <mat-option value="Cloths">Cloths</mat-option>
-              <mat-option value="Blankets">Blankets</mat-option>
-            </mat-select>
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('category')?.errors?.['required']">
+        <div class="row">
+          <div class="input-down-container">
+            <!-- category -->
+            <mat-form-field class="category-form-field">
+              <mat-label>Category</mat-label>
+              <mat-select
+                formControlName="category"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('category')?.touched ||
+                      label.get('category')?.dirty) &&
+                    !label.get('category')?.valid
+                }"
+              >
+                <mat-option value="Electronics">Electronics</mat-option>
+                <mat-option value="Cloths">Cloths</mat-option>
+                <mat-option value="Blankets">Blankets</mat-option>
+              </mat-select>
+              <mat-error *ngIf="label.get('category')?.errors?.['required']">
                 Please select an option.
-              </span>
-            </span>
-          </mat-form-field>
-        <!-- image url  -->
-          <mat-form-field class="image-url-form-field">
-            <mat-label>ImageUrl</mat-label>
-            <input
-              matInput
-              placeholder="ImageUrl (required)"
-              formControlName="imageUrl"
-              [ngClass]="{
-                'is-invalid':
-                  (label.get('imageUrl')?.touched ||
-                  label.get('imageUrl')?.dirty) &&
-                  !label.get('imageUrl')?.valid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('imageUrl')?.errors?.['required']">
+              </mat-error>
+            </mat-form-field>
+            <!-- image url  -->
+            <mat-form-field class="image-url-form-field">
+              <mat-label>ImageUrl</mat-label>
+              <input
+                matInput
+                placeholder="ImageUrl (required)"
+                formControlName="imageUrl"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('imageUrl')?.touched ||
+                      label.get('imageUrl')?.dirty) &&
+                    !label.get('imageUrl')?.valid
+                }"
+              />
+              <mat-error *ngIf="label.get('imageUrl')?.errors?.['required']">
                 Please enter image url.
-              </span>
-              <span *ngIf="label.get('imageUrl')?.errors?.['imageUrl']">
+              </mat-error>
+              <mat-error *ngIf="label.get('imageUrl')?.errors?.['imageUrl']">
                 Please enter image url valid.
-              </span>
-            </span>
-          </mat-form-field>
-        <!-- phone -->
-          <mat-icon>phone</mat-icon>
-          <mat-form-field class="phone-form-field">
-            <mat-label>Phone</mat-label>
-            <input
-              type="tel"
-              matInput
-              placeholder="Phone (required)"
-              formControlName="phone"
-              [ngClass]="{
-                'is-invalid':
-                  (label.get('phone')?.touched ||
-                  label.get('phone')?.dirty) &&
-                  !label.get('phone')?.valid
-              }"
-            />
-            <span class="invalid-feedback">
-              <span *ngIf="label.get('phone')?.errors?.['required']">
+              </mat-error>
+            </mat-form-field>
+            <!-- phone -->
+            <mat-icon>phone</mat-icon>
+            <mat-form-field class="phone-form-field">
+              <mat-label>Phone</mat-label>
+              <input
+                type="tel"
+                matInput
+                placeholder="Phone (required)"
+                formControlName="phone"
+                [ngClass]="{
+                  'is-invalid':
+                    (label.get('phone')?.touched ||
+                      label.get('phone')?.dirty) &&
+                    !label.get('phone')?.valid
+                }"
+              />
+              <mat-error *ngIf="label.get('phone')?.errors?.['required']">
                 Please enter your phone number.
-              </span>
-              <span *ngIf="label.get('phone')?.errors?.['numbersOnly']">
+              </mat-error>
+              <mat-error *ngIf="label.get('phone')?.errors?.['numbersOnly']">
                 Please enter only number.
-              </span>
-              <span *ngIf="label.get('phone')?.errors?.['maxlength']">
+              </mat-error>
+              <mat-error *ngIf="label.get('phone')?.errors?.['maxlength']">
                 Please enter maxLength 10
-              </span>
-            </span>
-          </mat-form-field>
-        <!-- select -->
-        <mat-form-field class="select-form-field">
-          <mat-label>Select</mat-label>
-          <mat-select formControlName="select">
-            <mat-option value="Mobile">Mobile</mat-option>
-            <mat-option value="LandLine">LandLine</mat-option>
-          </mat-select>
-        </mat-form-field>
+              </mat-error>
+            </mat-form-field>
+            <!-- select -->
+            <mat-form-field class="select-form-field">
+              <mat-label>Select</mat-label>
+              <mat-select formControlName="select">
+                <mat-option value="Mobile">Mobile</mat-option>
+                <mat-option value="LandLine">LandLine</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
         </div>
       </ng-container>
-        </ng-container>
+    </ng-container>
+  </form>
 
-
-    <!-- add new product button -->
-        <button
-          mat-raised-button
-          color="primary"
-          type="button"
-          [disabled]="addNewProduct.invalid"
-          (click)="newProduct()"
-        >
-          ADD NEW PRODUCT
-        </button>
-    <!-- save btn -->
-    <div class="save-btn">
+  <div class="row">
+    <div>
+      <!-- add new product button -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="button"
+        [disabled]="product.invalid"
+        (click)="addProduct()"
+      >
+        ADD NEW PRODUCT
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div>
       <button
         mat-raised-button
         color="primary"
         type="submit"
         [title]="
-          addNewProduct.valid
+          product.valid
             ? 'Save your entered data'
             : 'Disabled until the form data is valid'
         "
-        [disabled]="!addNewProduct.valid"
+        [disabled]="!product.valid"
         (click)="save()"
       >
         SAVE
       </button>
+      <!-- reset btn -->
+      <button mat-raised-button (click)="reset()">RESET</button>
     </div>
-  </form>
-  <!-- reset btn -->
-  <div class="reset-btn">
-    <button mat-raised-button (click)="reset()">RESET</button>
   </div>
 </div>
-<br />Dirty: {{ productForm.dirty }} <br />Touched: {{ productForm.touched }}
-<br />Valid: {{ productForm.valid }} <br />Value:
-{{ productForm.value | json }} <br />&nbsp;

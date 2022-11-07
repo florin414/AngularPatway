@@ -1,16 +1,16 @@
-.mat-card{
+.mat-card {
   padding: 80px;
   cursor: pointer;
   height: 220px;
   width: 220px;
 }
 @media screen and (max-width: 890px) {
-  .mat-card{
+  .mat-card {
     height: 20px;
     width: 20px;
   }
 }
 
-.mat-card:hover{
+.mat-card:hover {
   box-shadow: 0 14px 28px lightblue, 0 10px 10px lightblue;
 }

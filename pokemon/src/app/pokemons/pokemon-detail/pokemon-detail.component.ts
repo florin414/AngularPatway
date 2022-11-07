@@ -9,8 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pokemon-detail.component.css'],
 })
 export class PokemonDetailComponent implements OnInit {
-  pokemonDetails: PokemonDetails | undefined;
-
+  protected pokemonDetails: PokemonDetails;
   constructor(
     private route: ActivatedRoute,
     private pokemonService: PokemonService
@@ -23,9 +22,9 @@ export class PokemonDetailComponent implements OnInit {
     }
   }
 
-  getPokemonDetail(name: string): void {
-    this.pokemonService
-      .getPokemonDetailsByName(name)
-      .then((pokemon) => (this.pokemonDetails = pokemon));
+  async getPokemonDetail(name: string){
+    this.pokemonDetails = await this.pokemonService.getPokemonDetailsByName(
+      name
+    );
   }
 }

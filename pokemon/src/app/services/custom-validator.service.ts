@@ -5,71 +5,73 @@ import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
   providedIn: 'root',
 })
 export class CustomValidatorService {
-  validateNumbersOnly(value: any): ValidationErrors | null {
+  private validateNumber(value: any): ValidationErrors | null {
     let regexPatternForNumbers: string = '^[0-9]+$';
 
     let regex = new RegExp(regexPatternForNumbers);
 
-    if (!regex.test(value)) {
-      return { "numbersOnly": true };
-    }
-    return null;
+    return !regex.test(value) ? { numbersOnly: true } : null;
   }
 
-  validateNumbersAndAlphabetsOnly(value: any): ValidationErrors | null {
+  private validateAlphabet(value: any): ValidationErrors | null {
+    let regexPatternAlphabet: string = '^[a-zA-Z]+$';
+
+    let regex = new RegExp(regexPatternAlphabet);
+
+    return !regex.test(value) ? { alphabet: true } : null;
+  }
+
+  private validateNumberAndAlphabet(value: any): ValidationErrors | null {
     let regexPatternNumbersAndAlphabets: string = '^[a-zA-Z0-9]+$';
 
     let regex = new RegExp(regexPatternNumbersAndAlphabets);
 
-    if (!regex.test(value)) {
-      return { "numbersAndAlphabetsOnly": true };
-    }
-    return null;
+    return !regex.test(value) ? { numbersAndAlphabetsOnly: true } : null;
   }
 
-  validateImageUrl(value: any): ValidationErrors | null {
+  private validateImageUrl(value: any): ValidationErrors | null {
     let regexPatternImageUrl = /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)/g;
 
     let regex = new RegExp(regexPatternImageUrl);
 
-    if (!regex.test(value)) {
-      return { "imageUrl": true };
-    }
-    return null;
+    return !regex.test(value) ? { imageUrl: true } : null;
   }
 
-  validateNumbersWith2DecimalPlacesOnly(value: any): ValidationErrors | null {
+  private validateNumbersWith2Decimal(value: any): ValidationErrors | null {
     let regexPatternNumbersWith2DecimalPlaces: string = '^[0-9]*(.[0-9]{0,2})$';
 
     let regex = new RegExp(regexPatternNumbersWith2DecimalPlaces);
 
-    if (!regex.test(value)) {
-      return { "numbersWith2DecimalOnly": true };
-    }
-    return null;
+    return !regex.test(value) ? { numbersWith2DecimalOnly: true } : null;
   }
 
-  public customNumbersOnlyValidator(): ValidatorFn {
+  customNumberValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.validateNumbersOnly(control.value);
+      return this.validateNumber(control.value);
     };
   }
 
-  public customNumbersWith2DecimalPlacesOnlyValidator(): ValidatorFn {
+  customNumbersWith2DecimalValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.validateNumbersWith2DecimalPlacesOnly(control.value);
+      return this.validateNumbersWith2Decimal(control.value);
     };
   }
 
-  public customNumbersAndAlphabetsOnlyValidator(): ValidatorFn {
+  customNumberAndAlphabetValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.validateNumbersAndAlphabetsOnly(control.value);
+      return this.validateNumberAndAlphabet(control.value);
     };
   }
 
-  public customImageUrlValidator(): ValidatorFn {
+  customImageUrlValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
       return this.validateImageUrl(control.value);
+    };
+  }
+
+  customAlphabetValidator(): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      return this.validateAlphabet(control.value);
     };
   }
 }

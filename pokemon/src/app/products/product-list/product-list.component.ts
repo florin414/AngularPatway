@@ -8,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list.component.css'],
 })
 export class ProductListComponent implements OnInit {
-  products: Product[];
+  protected products: Product[];
 
   constructor(private productService: CreateProductService) {}
 
-  async ngOnInit(){
-    this.products = await this.productService.getProductList().then();
+  ngOnInit() {
+    this.productService
+      .getProductList()
+      .then((product) => (this.products = product));
   }
 }

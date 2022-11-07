@@ -14,7 +14,7 @@ import { ProductCardComponent } from './product-list/product-card/product-card.c
   declarations: [
     CreateProductComponent,
     ProductListComponent,
-    ProductCardComponent
+    ProductCardComponent,
   ],
   imports: [
     CommonModule,
@@ -22,12 +22,9 @@ import { ProductCardComponent } from './product-list/product-card/product-card.c
     FormsModule,
     ReactiveFormsModule,
     ProductRoutingModule,
-    FlexLayoutModule
+    FlexLayoutModule,
   ],
-  providers: [
-    CreateProductService,
-    CustomValidatorService
-  ],
-  exports: [RouterModule]
+  providers: [CreateProductService, CustomValidatorService],
+  exports: [RouterModule],
 })
-export class ProductModule { }
+export class ProductModule {}

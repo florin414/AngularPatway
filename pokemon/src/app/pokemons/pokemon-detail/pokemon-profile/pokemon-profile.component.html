@@ -1,0 +1,33 @@
+<p>pokemon-profile works!</p>
+<h1>{{ pokemonDetails?.name }}</h1>
+<mat-grid-list cols="2">
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item
+        ><strong>Height:</strong>{{ pokemonDetails?.height }} m</mat-list-item
+      >
+      <mat-list-item><strong>Catch Rate:</strong></mat-list-item>
+      <mat-list-item><strong>Egg Groups:</strong>
+        <mat-label *ngFor="let eggGroup of species?.egg_groups">
+          {{eggGroup.name}},
+        </mat-label>
+      </mat-list-item>
+      <mat-list-item
+        ><strong>Abilities:</strong>
+        <mat-label *ngFor="let abilitie of pokemonDetails?.abilities">
+          {{abilitie.ability.name}},</mat-label
+        ></mat-list-item
+      >
+    </mat-list>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <mat-list>
+      <mat-list-item
+        ><strong>Weight:</strong> {{ pokemonDetails?.weight }} kg</mat-list-item
+      >
+      <mat-list-item><strong>Gender Ratio:</strong></mat-list-item>
+      <mat-list-item><strong>Hatch Steps:</strong></mat-list-item>
+      <mat-list-item><strong>EVs:</strong></mat-list-item>
+    </mat-list>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -1,24 +1,29 @@
-import { Product } from './../../models/product/product';
 import { CreateProductService } from './../../services/create-product.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { CustomValidatorService } from 'src/app/services/custom-validator.service';
-import { DirtyComponent } from 'src/app/shared/dirty-component';
 import { Subscription } from 'rxjs';
+import { DirtyCheckComponent } from 'src/app/shared/dirty-check-component';
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.css'],
 })
 export class CreateProductComponent
-  implements OnInit, OnDestroy, DirtyComponent
+  implements OnInit, OnDestroy, DirtyCheckComponent
 {
-  productForm!: FormGroup;
-  messageName: string = '';
-  subscription!: Subscription;
+  protected productForm: FormGroup;
+  private subscription: Subscription;
   private isDirty = false;
-  get addNewProduct() {
-    return this.productForm.controls['addNewProduct'] as FormArray;
+
+  protected get product() {
+    return this.productForm.controls['product'] as FormArray;
   }
 
   constructor(
@@ -26,84 +31,70 @@ export class CreateProductComponent
     private createProductService: CreateProductService,
     private customValidationService: CustomValidatorService
   ) {}
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  canDeactivate() {
+  canDeactivate(): boolean {
     return this.isDirty;
   }
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      addNewProduct: this.formBuilder.array([this.buildNewProduct()]),
+      product: this.formBuilder.array([this.buildNewProduct()]),
     });
-    this.subscription = this.addNewProduct.valueChanges.subscribe(
+    this.subscription = this.product.valueChanges.subscribe(
       () => (this.isDirty = true)
     );
   }
 
-  buildNewProduct(): FormGroup {
+  private buildNewProduct(): FormGroup {
     return this.formBuilder.group({
-      name: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          this.customValidationService.customNumbersAndAlphabetsOnlyValidator(),
-        ],
-      ],
-      select: [''],
-      category: ['', Validators.required],
-      description: [
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          this.customValidationService.customNumbersAndAlphabetsOnlyValidator(),
-        ],
-      ],
-      price: [
-        '',
-        [
-          Validators.required,
-          this.customValidationService.customNumbersWith2DecimalPlacesOnlyValidator(),
-        ],
-      ],
-      phone: [
-        '',
-        [
-          Validators.required,
-          this.customValidationService.customNumbersOnlyValidator(),
-          Validators.maxLength(10),
-        ],
-      ],
-      imageUrl: [
-        '',
-        [
-          Validators.required,
-          this.customValidationService.customImageUrlValidator(),
-        ],
-      ],
+      name: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        this.customValidationService.customNumberAndAlphabetValidator(),
+      ]),
+      select: new FormControl(''),
+      category: new FormControl('', Validators.required),
+      description: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        this.customValidationService.customNumberAndAlphabetValidator(),
+      ]),
+      price: new FormControl('', [
+        Validators.required,
+        this.customValidationService.customNumbersWith2DecimalValidator(),
+      ]),
+      phone: new FormControl('', [
+        Validators.required,
+        this.customValidationService.customNumberValidator(),
+        Validators.maxLength(10),
+      ]),
+      imageUrl: new FormControl('', [
+        Validators.required,
+        this.customValidationService.customImageUrlValidator(),
+      ]),
     });
   }
 
-  newProduct(): void {
-    this.addNewProduct.push(this.buildNewProduct());
+  protected addProduct(): void {
+    this.product.push(this.buildNewProduct());
   }
 
-  reset(): void {
-    while (this.addNewProduct.length > 0) {
-      this.addNewProduct.removeAt(0);
+  protected reset(): void {
+    while (this.product.length > 0) {
+      this.product.removeAt(0);
     }
-    this.newProduct();
+    this.addProduct();
   }
 
-  save() {
-    console.log('Saved: ' + JSON.stringify(this.addNewProduct.value));
+  protected save(): void {
+    console.log('Saved: ' + JSON.stringify(this.product.value));
 
-    this.addNewProduct.value.array.forEach((product: Product) =>
-      this.createProductService.addProduct(product).then()
-    );
+    for (let product of this.product.value) {
+      this.createProductService.addProduct(product).then();
+    }
   }
 }

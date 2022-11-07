@@ -5,7 +5,6 @@
   [style.height]="'800px'"
 >
   <mat-grid-tile *ngFor="let product of products">
-    <app-product-card [productCard]='product'
-    ></app-product-card>
+    <app-product-card [productCard]="product"></app-product-card>
   </mat-grid-tile>
 </mat-grid-list>

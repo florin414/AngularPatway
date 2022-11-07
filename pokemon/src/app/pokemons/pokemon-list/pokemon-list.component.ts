@@ -9,18 +9,18 @@ import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
   styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent implements OnInit {
-  pokemons: Pokemon[] | undefined;
+  protected pokemons: Pokemon[];
   private url?: string = 'https://pokeapi.co/api/v2/pokemon';
-  private urlNext: string | undefined;
-  isPreviousButtonDisabled: boolean = true;
-  pokemonDetails!: PokemonDetails;
+  private urlNext: string;
+  protected isPreviousButtonDisabled: boolean = true;
+  protected pokemonDetails: PokemonDetails;
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     if (this.url != null) {
       this.pokemonService.getPokemonList(this.url).then((pokemons) => {
-        this.pokemons = pokemons?.results;
-        this.urlNext = pokemons?.next;
+        this.pokemons = pokemons.results;
+        this.urlNext = pokemons.next;
       });
     }
   }
@@ -29,8 +29,8 @@ export class PokemonListComponent implements OnInit {
     let url = this.urlNext;
     if (url != null) {
       this.pokemonService.getPokemonList(url).then((pokemons) => {
-        this.pokemons = pokemons?.results;
-        if (pokemons?.previous != null) {
+        this.pokemons = pokemons.results;
+        if (pokemons.previous != null) {
           this.url = pokemons.previous;
         }
         if (pokemons?.next != null) {
@@ -44,11 +44,11 @@ export class PokemonListComponent implements OnInit {
     let url = this.url;
     if (url != null) {
       this.pokemonService.getPokemonList(url).then((pokemons) => {
-        this.pokemons = pokemons?.results;
-        if (pokemons?.previous != null) {
+        this.pokemons = pokemons.results;
+        if (pokemons.previous != null) {
           this.url = pokemons.previous;
         }
-        if (pokemons?.next != null) {
+        if (pokemons.next != null) {
           this.urlNext = pokemons.next;
         }
       });
