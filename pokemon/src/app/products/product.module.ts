@@ -1,4 +1,3 @@
-import { CustomValidatorService } from './../services/custom-validator.service';
 import { CreateProductService } from './../services/create-product.service';
 import { ProductListComponent } from './product-list/product-list.component';
 import { CreateProductComponent } from './create-product/create-product.component';
@@ -10,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from '../shared/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ProductCardComponent } from './product-list/product-card/product-card.component';
+import { CreateProductValidatorService } from '../services/create-product-validator.service';
 @NgModule({
   declarations: [
     CreateProductComponent,
@@ -24,7 +24,7 @@ import { ProductCardComponent } from './product-list/product-card/product-card.c
     ProductRoutingModule,
     FlexLayoutModule,
   ],
-  providers: [CreateProductService, CustomValidatorService],
+  providers: [CreateProductService, CreateProductValidatorService],
   exports: [RouterModule],
 })
 export class ProductModule {}

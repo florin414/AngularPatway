@@ -27,7 +27,7 @@
                 Please enter min 3 charactes.
               </mat-error>
               <mat-error
-                *ngIf="label.get('name')?.errors?.['numbersAndAlphabetsOnly']"
+                *ngIf="label.get('name')?.errors?.['numberAndAlphabet']"
               >
                 Please enter numbers and alphabets only.
               </mat-error>
@@ -50,7 +50,7 @@
                 Please enter description.
               </mat-error>
               <mat-error
-                *ngIf="label.get('description')?.errors?.['numbersAndAlphabetsOnly']"
+                *ngIf="label.get('description')?.errors?.['numberAndAlphabet']"
               >
                 Please enter numbers and alphabets only.
               </mat-error>
@@ -78,7 +78,7 @@
                 Please enter price.
               </mat-error>
               <mat-error
-                *ngIf="label.get('price')?.errors?.['numbersWith2DecimalOnly']"
+                *ngIf="label.get('price')?.errors?.['numberWith2Decimal']"
               >
                 Please enter numbers with 2 decimal.
               </mat-error>
@@ -99,9 +99,9 @@
                     !label.get('category')?.valid
                 }"
               >
-                <mat-option value="Electronics">Electronics</mat-option>
-                <mat-option value="Cloths">Cloths</mat-option>
-                <mat-option value="Blankets">Blankets</mat-option>
+                <mat-option [value]=0>Electronics</mat-option>
+                <mat-option [value]=1>Cloths</mat-option>
+                <mat-option [value]=2>Blankets</mat-option>
               </mat-select>
               <mat-error *ngIf="label.get('category')?.errors?.['required']">
                 Please select an option.
@@ -147,7 +147,7 @@
               <mat-error *ngIf="label.get('phone')?.errors?.['required']">
                 Please enter your phone number.
               </mat-error>
-              <mat-error *ngIf="label.get('phone')?.errors?.['numbersOnly']">
+              <mat-error *ngIf="label.get('phone')?.errors?.['number']">
                 Please enter only number.
               </mat-error>
               <mat-error *ngIf="label.get('phone')?.errors?.['maxlength']">
@@ -158,8 +158,8 @@
             <mat-form-field class="select-form-field">
               <mat-label>Select</mat-label>
               <mat-select formControlName="select">
-                <mat-option value="Mobile">Mobile</mat-option>
-                <mat-option value="LandLine">LandLine</mat-option>
+                <mat-option [value]=0>Mobile</mat-option>
+                <mat-option [value]=1>LandLine</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

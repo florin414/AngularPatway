@@ -11,11 +11,12 @@ export class ProductListGuard implements CanActivate {
     private router: Router
   ) {}
 
-  async canActivate() {
-    let products = await this.productService.getProductList();
-    if (products.length == 0) {
+  canActivate(): boolean {
+    let lenghtProductList;
+    this.productService.getProductList().then((products) => lenghtProductList = products.length);
+    if (lenghtProductList == 0) {
       alert('Product list is empty');
-      this.router.navigate(['/products']);
+      this.router.navigate(['/pokemons']);
       return false;
     }
     return true;

@@ -1,3 +1,4 @@
+import { PokemonEvolution } from './../models/pokemon/pokemon-details-dto/pokemon-evolution/pokemon-evolution';
 import { environment } from './../../environments/environment';
 import { PokemonDetails } from './../models/pokemon/pokemon-details';
 import { HttpClient } from '@angular/common/http';
@@ -10,27 +11,34 @@ import { firstValueFrom } from 'rxjs';
   providedIn: 'root',
 })
 export class PokemonService {
+  private pokemonDetailsUrl = environment.pokemonBaseUrl;
+  private evolutionChainUrl = environment.evolutionChainUrl;
+
   constructor(private http: HttpClient) {}
 
-  private pokemonDetailsUrl = environment.pokemonBaseUrl;
-
-  async getPokemonList(pokemonApiUrl: string): Promise<PokemonList> {
+  public async getPokemonList(pokemonApiUrl: string): Promise<PokemonList> {
     return await firstValueFrom(this.http.get<PokemonList>(pokemonApiUrl));
   }
 
-  async getPokemonDetails(pokemonDetailsUrl: string): Promise<PokemonDetails> {
+  public async getPokemonDetails(pokemonDetailsUrl: string): Promise<PokemonDetails> {
     return await firstValueFrom(
       this.http.get<PokemonDetails>(pokemonDetailsUrl)
     );
   }
 
-  async getPokemonSpecies(url: string): Promise<Species> {
+  public async getPokemonSpecies(url: string): Promise<Species> {
     return await firstValueFrom(this.http.get<Species>(url));
   }
 
-  async getPokemonDetailsByName(pokemonName: string): Promise<PokemonDetails> {
+  public async getPokemonDetailsByName(pokemonName: string): Promise<PokemonDetails> {
     return await firstValueFrom(
       this.http.get<PokemonDetails>(`${this.pokemonDetailsUrl}${pokemonName}/`)
+    );
+  }
+
+  public async getPokemonEvolutionById(id: number): Promise<PokemonEvolution>{
+    return await firstValueFrom(
+      this.http.get<PokemonEvolution>(`${this.evolutionChainUrl}${id}/`)
     );
   }
 }

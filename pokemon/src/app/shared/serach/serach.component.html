@@ -1,6 +1,7 @@
 <div class="search-bar">
-  <form #searchForm="ngForm" appIdentityRevealed>
     <input
+    (keyup.enter)="search()"
+    [(ngModel)]="input"
       class="form-control"
       required
       minlength="3"
@@ -8,5 +9,4 @@
       matInput
       type="text"
     />
-  </form>
 </div>

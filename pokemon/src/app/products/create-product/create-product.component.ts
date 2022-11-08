@@ -1,5 +1,8 @@
+import { Category } from './../../models/product/category';
+import { Select } from './../../models/product/select';
+import { Product } from './../../models/product/product';
 import { CreateProductService } from './../../services/create-product.service';
-import { Component, OnDestroy, OnInit, OnChanges, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck } from '@angular/core';
 import {
   FormArray,
   FormBuilder,
@@ -7,7 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { CustomValidatorService } from 'src/app/services/custom-validator.service';
+import { CreateProductValidatorService } from 'src/app/services/create-product-validator.service';
 import { Subscription } from 'rxjs';
 import { DirtyCheckComponent } from 'src/app/shared/dirty-check-component';
 import { Router } from '@angular/router';
@@ -22,15 +25,12 @@ export class CreateProductComponent
   protected productForm: FormGroup;
   private subscription: Subscription;
   private isDirty = false;
-
-  protected get product() {
-    return this.productForm.controls['product'] as FormArray;
-  }
+  private productModel: Product;
 
   constructor(
     private formBuilder: FormBuilder,
     private createProductService: CreateProductService,
-    private customValidationService: CustomValidatorService,
+    private createProductValidatorService: CreateProductValidatorService,
     private router: Router
   ) {}
 
@@ -62,29 +62,33 @@ export class CreateProductComponent
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        this.customValidationService.customNumberAndAlphabetValidator(),
+        this.createProductValidatorService.numberAndAlphabetValidator(),
       ]),
-      select: new FormControl(''),
-      category: new FormControl('', Validators.required),
+      select: new FormControl(),
+      category: new FormControl('',Validators.required),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        this.customValidationService.customNumberAndAlphabetValidator(),
+        this.createProductValidatorService.numberAndAlphabetValidator(),
       ]),
       price: new FormControl('', [
         Validators.required,
-        this.customValidationService.customNumbersWith2DecimalValidator(),
+        this.createProductValidatorService.numbersWith2DecimalValidator(),
       ]),
       phone: new FormControl('', [
         Validators.required,
-        this.customValidationService.customNumberValidator(),
+        this.createProductValidatorService.numberValidator(),
         Validators.maxLength(10),
       ]),
       imageUrl: new FormControl('', [
         Validators.required,
-        this.customValidationService.customImageUrlValidator(),
+        this.createProductValidatorService.imageUrlValidator(),
       ]),
     });
+  }
+
+  protected get product() {
+    return this.productForm.controls['product'] as FormArray;
   }
 
   protected addProduct(): void {
@@ -99,12 +103,12 @@ export class CreateProductComponent
   }
 
   protected save(): void {
-    console.log('Saved: ' + JSON.stringify(this.product.value));
-
-    this.router.navigate(['/product-list']);
-
-    for (let product of this.product.value) {
-      this.createProductService.addProduct(product).then();
+    if(this.productForm.valid){
+      for (let product of this.product.value) {
+        this.productModel = Object.assign({}, product);
+        this.createProductService.addProduct(this.productModel).then();
+      }
     }
+    this.router.navigate(['/product-list']);
   }
 }

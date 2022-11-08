@@ -22,7 +22,7 @@ export class PokemonDetailComponent implements OnInit {
     }
   }
 
-  async getPokemonDetail(name: string){
+  private async getPokemonDetail(name: string){
     this.pokemonDetails = await this.pokemonService.getPokemonDetailsByName(
       name
     );

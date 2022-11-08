@@ -1,8 +1,29 @@
 <button routerLink="/pokemons">On Back</button>
-<div>
-  <app-pokemon-evolution></app-pokemon-evolution>
-  <app-pokemon-statistics></app-pokemon-statistics>
-  <app-pokemon-profile [pokemonDetails]="pokemonDetails"></app-pokemon-profile>
-  <app-pokemon-damage></app-pokemon-damage>
+<ng-template [ngIf]="pokemonDetails==null" [ngIfElse]="pokemon">
+  <h1>
+    Pokemon is invalid!
+  </h1>
+</ng-template>
+
+<ng-template #pokemon>
+  <h1>{{ pokemonDetails.name }}</h1>
+<div class="row">
+  <div class="pokemon-evolution">
+    <app-pokemon-evolution
+      [pokemonDetails]="pokemonDetails"
+    ></app-pokemon-evolution>
+  </div>
+  <div class="pokemon-statistics">
+    <app-pokemon-statistics></app-pokemon-statistics>
+  </div>
+  <div class="pokemon-profile">
+    <app-pokemon-profile
+      [pokemonDetails]="pokemonDetails"
+    ></app-pokemon-profile>
+  </div>
+  <div class="pokemon-damage">
+    <app-pokemon-damage></app-pokemon-damage>
+  </div>
 </div>
+</ng-template>
 <router-outlet></router-outlet>

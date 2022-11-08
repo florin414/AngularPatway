@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
   styleUrls: [ './loader.component.scss' ],
 })
 export class LoaderComponent {
-  isLoading: Subject<boolean> = this.loaderService.isLoading;
+  public isLoading: Subject<boolean> = this.loaderService.isLoading;
 
   constructor(private loaderService: LoaderService) {
   }
