@@ -5,7 +5,7 @@ import { Subject } from 'rxjs';
 @Component({
   selector: 'app-loader',
   templateUrl: './loader.component.html',
-  styleUrls: [ './loader.component.scss' ],
+  styleUrls: [ './loader.component.css' ],
 })
 export class LoaderComponent {
   public isLoading: Subject<boolean> = this.loaderService.isLoading;
