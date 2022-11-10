@@ -1,4 +1,4 @@
-export class EvolutionDetails {
+export class EvolutionState {
   gender: string;
   held_item: string;
   item: string;
