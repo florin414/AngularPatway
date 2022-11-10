@@ -1,5 +1,5 @@
-import { Product } from './../../models/product/product';
-import { CreateProductService } from './../../services/create-product.service';
+import { Product } from '../../models/product/product';
+import { CreateProductService } from '../../services/create-product.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {
   FormArray,
@@ -13,11 +13,11 @@ import { Subscription } from 'rxjs';
 import { DirtyCheckComponent } from 'src/app/shared/dirty-check-component';
 import { Router } from '@angular/router';
 @Component({
-  selector: 'app-create-product',
-  templateUrl: './create-product.component.html',
-  styleUrls: ['./create-product.component.css'],
+  selector: 'app-product-form',
+  templateUrl: './product-form.component.html',
+  styleUrls: ['./product-form.component.css'],
 })
-export class CreateProductComponent
+export class ProductFormComponent
   implements OnInit, DoCheck, DirtyCheckComponent
 {
   protected productForm: FormGroup;
