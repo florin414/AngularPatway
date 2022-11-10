@@ -1,0 +1,12 @@
+.btns{
+  margin-bottom: 40px;
+  margin-right: 33px;
+  float: right;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 10px;
+  column-gap: 2em;
+}
+
+.container{
+}

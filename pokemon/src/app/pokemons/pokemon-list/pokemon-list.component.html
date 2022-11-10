@@ -1,26 +1,22 @@
-<div class="pokemos-container">
+<div class="container">
   <mat-grid-list
-  cols="4"
-  rowHeight="fit"
-  gutterSize="1px"
-  [style.height]="'1600px'"
->
-<mat-grid-tile *ngFor="let pokemon of pokemons">
-    <app-pokemon-card [pokemonDetailUrl]='pokemon.url'></app-pokemon-card>
-  </mat-grid-tile>
-</mat-grid-list>
-  <mat-button-toggle-group>
+    cols="4"
+    rowHeight="fit"
+    gutterSize="1px"
+    [style.height]="'1600px'"
+  >
+    <mat-grid-tile *ngFor="let pokemon of pokemons">
+      <app-pokemon-card [pokemonDetailUrl]="pokemon.url"></app-pokemon-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div class="btns">
     <mat-button-toggle
-    class="previous-button"
-    (click)="togglePreviousPokemons()"
-    >previous</mat-button-toggle
-  >
-  <mat-button-toggle
-    class="next-button"
-    (click)="toggleNextPokemons()"
-    >next</mat-button-toggle
-  >
-  </mat-button-toggle-group>
+      class="previous-button"
+      (click)="togglePreviousPokemons()"
+      >previous</mat-button-toggle
+    >
+    <mat-button-toggle class="next-button" (click)="toggleNextPokemons()"
+      >next</mat-button-toggle
+    >
+  </div>
 </div>
-
-

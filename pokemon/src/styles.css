@@ -1,4 +1,9 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  max-width: 100%;
+}
+body, input[text] {
+  color: #333;
+  font-family: Cambria, Georgia, serif;
+}

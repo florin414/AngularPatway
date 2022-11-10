@@ -7,7 +7,7 @@ import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
 @Component({
   selector: 'app-pokemon-list',
   templateUrl: './pokemon-list.component.html',
-  styleUrls: ['./pokemon-list.component.scss'],
+  styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent implements OnInit {
   protected pokemons: Pokemon[];

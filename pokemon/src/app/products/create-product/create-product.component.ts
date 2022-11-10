@@ -1,5 +1,3 @@
-import { Category } from './../../models/product/category';
-import { Select } from './../../models/product/select';
 import { Product } from './../../models/product/product';
 import { CreateProductService } from './../../services/create-product.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
@@ -64,7 +62,7 @@ export class CreateProductComponent
         Validators.minLength(3),
         this.createProductValidatorService.numberAndAlphabetValidator(),
       ]),
-      select: new FormControl(),
+      select: new FormControl(0),
       category: new FormControl('',Validators.required),
       description: new FormControl('', [
         Validators.required,
@@ -109,6 +107,6 @@ export class CreateProductComponent
         this.createProductService.addProduct(this.productModel).then();
       }
     }
-    this.router.navigate(['/product-list']);
+    this.router.navigate(['/pokemons']);
   }
 }
