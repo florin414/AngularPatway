@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./serach.component.css'],
 })
 export class SerachComponent{
-  protected input: string;
+  public input: string;
   constructor( private router: Router) {}
 
-  protected search(): void {
+  public search(): void {
     this.router.navigate(['/pokemon', this.input]);
   }
 }

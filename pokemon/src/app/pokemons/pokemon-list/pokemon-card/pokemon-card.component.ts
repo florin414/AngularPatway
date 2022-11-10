@@ -9,7 +9,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PokemonCardComponent implements OnInit {
   @Input() pokemonDetailUrl = '';
-  protected pokemonDetails: PokemonDetails;
+  public pokemonDetails: PokemonDetails;
 
   constructor(private pokemonService: PokemonService) {}
 

@@ -9,7 +9,7 @@ import { Species } from 'src/app/models/pokemon/pokemon-details-dto/pokemon-prof
 })
 export class PokemonProfileComponent implements OnChanges, OnInit {
   @Input() pokemonDetails: PokemonDetails;
-  protected species: Species;
+  public species: Species;
 
   constructor(private pokemonService: PokemonService) {}
 

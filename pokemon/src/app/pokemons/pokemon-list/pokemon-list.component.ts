@@ -10,11 +10,11 @@ import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
   styleUrls: ['./pokemon-list.component.css'],
 })
 export class PokemonListComponent implements OnInit {
-  protected pokemons: Pokemon[];
+  public pokemons: Pokemon[];
   private url?: string = environment.pokemonBaseUrl;
   private urlNext?: string;
-  protected isPreviousButtonDisabled: boolean = true;
-  protected pokemonDetails: PokemonDetails;
+  public isPreviousButtonDisabled: boolean = true;
+  public pokemonDetails: PokemonDetails;
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
-  protected toggleNextPokemons(): void {
+  public toggleNextPokemons(): void {
     let url = this.urlNext;
     if (url != null) {
       this.pokemonService.getPokemonList(url).then((pokemons) => {
@@ -41,7 +41,7 @@ export class PokemonListComponent implements OnInit {
     }
   }
 
-  protected togglePreviousPokemons(): void {
+  public togglePreviousPokemons(): void {
     let url = this.url;
     if (url != null) {
       this.pokemonService.getPokemonList(url).then((pokemons) => {

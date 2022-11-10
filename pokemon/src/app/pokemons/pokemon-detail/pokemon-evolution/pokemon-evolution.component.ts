@@ -10,7 +10,7 @@ import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
 })
 export class PokemonEvolutionComponent implements OnInit, OnChanges {
   @Input() pokemonDetails: PokemonDetails;
-  protected evolutionChainPokemon: PokemonEvolution;
+  public evolutionChainPokemon: PokemonEvolution;
 
   constructor(private pokemonService: PokemonService) { }
 

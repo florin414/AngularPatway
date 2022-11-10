@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./pokemon-detail.component.css'],
 })
 export class PokemonDetailComponent implements OnInit {
-  protected pokemonDetails: PokemonDetails;
+  public pokemonDetails: PokemonDetails;
   constructor(
     private route: ActivatedRoute,
     private pokemonService: PokemonService

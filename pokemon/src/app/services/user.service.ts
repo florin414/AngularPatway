@@ -4,5 +4,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class UserService {
-  protected isAdmin: boolean = false;
+  public isAdmin: boolean = false;
 }

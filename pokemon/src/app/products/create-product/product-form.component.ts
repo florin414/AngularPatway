@@ -20,7 +20,7 @@ import { Router } from '@angular/router';
 export class ProductFormComponent
   implements OnInit, DoCheck, DirtyCheckComponent
 {
-  protected productForm: FormGroup;
+  public productForm: FormGroup;
   private subscription: Subscription;
   private isDirty = false;
   private productModel: Product;
@@ -85,22 +85,22 @@ export class ProductFormComponent
     });
   }
 
-  protected get product() {
+  public get product() {
     return this.productForm.controls['product'] as FormArray;
   }
 
-  protected addProduct(): void {
+  public addProduct(): void {
     this.product.push(this.createFormGroup());
   }
 
-  protected reset(): void {
+  public reset(): void {
     while (this.product.length > 0) {
       this.product.removeAt(0);
     }
     this.addProduct();
   }
 
-  protected save(): void {
+  public save(): void {
     if(this.productForm.valid){
       for (let product of this.product.value) {
         this.productModel = Object.assign({}, product);
