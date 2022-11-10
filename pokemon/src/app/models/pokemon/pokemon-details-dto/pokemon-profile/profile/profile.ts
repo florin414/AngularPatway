@@ -13,7 +13,7 @@ import { EggGroup } from './egg-group';
 import { Color } from "./color";
 import { Genera } from './genera';
 
-export class Species{
+export class Profile{
   base_happiness: number;
   capture_rate: number;
   color: Color;

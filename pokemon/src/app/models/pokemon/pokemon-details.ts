@@ -1,6 +1,6 @@
+import { Species } from 'src/app/models/pokemon/pokemon-details-dto/pokemon-evolution/Chain/species';
 import { Types } from './pokemon-details-models/types';
 import { Sprite } from './pokemon-details-models/sprite';
-import { Specy } from './pokemon-details-models/specy';
 import { PastType } from './pokemon-details-models/past_type';
 import { HeldItem } from './pokemon-details-models/held_item';
 import { Form } from "@angular/forms";
@@ -23,7 +23,7 @@ export class PokemonDetails{
   name: string = '';
   order: number = 0;
   past_types: PastType[] = [];
-  species: Specy;
+  species: Species;
   sprites: Sprite;
   stats: Stats[] = [];
   types: Types[] = [];

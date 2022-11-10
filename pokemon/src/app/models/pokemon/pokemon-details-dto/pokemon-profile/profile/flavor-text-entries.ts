@@ -1,5 +1,5 @@
 import { Language } from './language';
-import { Version } from './../../../pokemon-details-models/version';
+import { Version } from '../../../pokemon-details-models/version';
 
 export class FlavorTextEntries {
   flavor_text: string;

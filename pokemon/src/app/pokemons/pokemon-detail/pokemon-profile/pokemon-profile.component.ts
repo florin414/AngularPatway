@@ -1,7 +1,7 @@
 import { PokemonService } from './../../../services/pokemon.service';
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { PokemonDetails } from 'src/app/models/pokemon/pokemon-details';
-import { Species } from 'src/app/models/pokemon/pokemon-details-dto/pokemon-profile/species/species';
+import { Profile } from 'src/app/models/pokemon/pokemon-details-dto/pokemon-profile/profile/profile';
 @Component({
   selector: 'app-pokemon-profile',
   templateUrl: './pokemon-profile.component.html',
@@ -9,7 +9,7 @@ import { Species } from 'src/app/models/pokemon/pokemon-details-dto/pokemon-prof
 })
 export class PokemonProfileComponent implements OnChanges, OnInit {
   @Input() pokemonDetails: PokemonDetails;
-  public species: Species;
+  public profile: Profile;
 
   constructor(private pokemonService: PokemonService) {}
 
@@ -17,9 +17,9 @@ export class PokemonProfileComponent implements OnChanges, OnInit {
 
   ngOnChanges() {
     this.pokemonService
-      .getPokemonSpecies(this.pokemonDetails.species.url)
-      .then((species) => {
-        this.species = species;
+      .getPokemonProfile(this.pokemonDetails.species.url)
+      .then((profile) => {
+        this.profile = profile;
       });
   }
 }

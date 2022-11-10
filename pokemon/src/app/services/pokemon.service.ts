@@ -4,8 +4,8 @@ import { PokemonDetails } from './../models/pokemon/pokemon-details';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { PokemonList } from '../models/pokemon/pokemon-list';
-import { Species } from '../models/pokemon/pokemon-details-dto/pokemon-profile/species/species';
 import { firstValueFrom } from 'rxjs';
+import { Profile } from '../models/pokemon/pokemon-details-dto/pokemon-profile/profile/profile';
 
 @Injectable({
   providedIn: 'root',
@@ -26,8 +26,8 @@ export class PokemonService {
     );
   }
 
-  public async getPokemonSpecies(url: string): Promise<Species> {
-    return await firstValueFrom(this.http.get<Species>(url));
+  public async getPokemonProfile(url: string): Promise<Profile> {
+    return await firstValueFrom(this.http.get<Profile>(url));
   }
 
   public async getPokemonDetailsByName(pokemonName: string): Promise<PokemonDetails> {
