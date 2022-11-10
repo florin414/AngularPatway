@@ -1,13 +1,13 @@
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Product } from './../models/product/product';
+import { Product } from '../models/product/product';
 import { firstValueFrom } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CreateProductService {
+export class ProductService {
   private productUrl = environment.productUrl;
 
   constructor(private http: HttpClient) {}

@@ -1,5 +1,5 @@
 import { Product } from '../../models/product/product';
-import { CreateProductService } from '../../services/create-product.service';
+import { ProductService } from '../../services/product.service';
 import { Component, OnInit, DoCheck } from '@angular/core';
 import {
   FormArray,
@@ -8,7 +8,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { CreateProductValidatorService } from 'src/app/services/create-product-validator.service';
+import { ProductValidatorService } from 'src/app/services/product-validator.service';
 import { Subscription } from 'rxjs';
 import { DirtyCheckComponent } from 'src/app/shared/dirty-check-component';
 import { Router } from '@angular/router';
@@ -27,8 +27,8 @@ export class ProductFormComponent
 
   constructor(
     private formBuilder: FormBuilder,
-    private createProductService: CreateProductService,
-    private createProductValidatorService: CreateProductValidatorService,
+    private productService: ProductService,
+    private productValidatorService: ProductValidatorService,
     private router: Router
   ) {}
 
@@ -60,27 +60,27 @@ export class ProductFormComponent
       name: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        this.createProductValidatorService.numberAndAlphabetValidator(),
+        this.productValidatorService.numberAndAlphabetValidator(),
       ]),
       select: new FormControl(0),
       category: new FormControl('',Validators.required),
       description: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
-        this.createProductValidatorService.numberAndAlphabetValidator(),
+        this.productValidatorService.numberAndAlphabetValidator(),
       ]),
       price: new FormControl('', [
         Validators.required,
-        this.createProductValidatorService.numbersWith2DecimalValidator(),
+        this.productValidatorService.numbersWith2DecimalValidator(),
       ]),
       phone: new FormControl('', [
         Validators.required,
-        this.createProductValidatorService.numberValidator(),
+        this.productValidatorService.numberValidator(),
         Validators.maxLength(10),
       ]),
       imageUrl: new FormControl('', [
         Validators.required,
-        this.createProductValidatorService.imageUrlValidator(),
+        this.productValidatorService.imageUrlValidator(),
       ]),
     });
   }
@@ -104,7 +104,7 @@ export class ProductFormComponent
     if(this.productForm.valid){
       for (let product of this.product.value) {
         this.productModel = Object.assign({}, product);
-        this.createProductService.addProduct(this.productModel).then();
+        this.productService.addProduct(this.productModel).then();
       }
     }
     this.router.navigate(['/pokemons']);

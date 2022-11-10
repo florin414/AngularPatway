@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AbstractControl, ValidationErrors, ValidatorFn } from '@angular/forms';
-import { CreateProductValidationErrorsService } from './create-product-validation-errors.service';
-
+import { ProductValidationErrorsService } from './product-validation-errors.service';
 @Injectable({
   providedIn: 'root',
 })
-export class CreateProductValidatorService {
+export class ProductValidatorService {
   constructor(
-    private createProductValidationErrorsService: CreateProductValidationErrorsService
+    private productValidationErrorsService: ProductValidationErrorsService
   ) {}
   public numberValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.createProductValidationErrorsService.validateNumber(
+      return this.productValidationErrorsService.validateNumber(
         control.value
       );
     };
@@ -19,7 +18,7 @@ export class CreateProductValidatorService {
 
   public numbersWith2DecimalValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.createProductValidationErrorsService.validateNumbersWith2Decimal(
+      return this.productValidationErrorsService.validateNumbersWith2Decimal(
         control.value
       );
     };
@@ -27,7 +26,7 @@ export class CreateProductValidatorService {
 
   public numberAndAlphabetValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.createProductValidationErrorsService.validateNumberAndAlphabet(
+      return this.productValidationErrorsService.validateNumberAndAlphabet(
         control.value
       );
     };
@@ -35,7 +34,7 @@ export class CreateProductValidatorService {
 
   public imageUrlValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.createProductValidationErrorsService.validateImageUrl(
+      return this.productValidationErrorsService.validateImageUrl(
         control.value
       );
     };
@@ -43,7 +42,7 @@ export class CreateProductValidatorService {
 
   public alphabetValidator(): ValidatorFn {
     return (control: AbstractControl): ValidationErrors | null => {
-      return this.createProductValidationErrorsService.validateAlphabet(
+      return this.productValidationErrorsService.validateAlphabet(
         control.value
       );
     };

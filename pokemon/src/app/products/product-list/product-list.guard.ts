@@ -1,4 +1,4 @@
-import { CreateProductService } from './../../services/create-product.service';
+import { ProductService } from '../../services/product.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
 
@@ -7,7 +7,7 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class ProductListGuard implements CanActivate {
   constructor(
-    private productService: CreateProductService,
+    private productService: ProductService,
     private router: Router
   ) {}
 

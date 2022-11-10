@@ -4,7 +4,7 @@ import { ValidationErrors } from '@angular/forms';
 @Injectable({
   providedIn: 'root'
 })
-export class CreateProductValidationErrorsService {
+export class ProductValidationErrorsService {
   public validateNumber(value: any): ValidationErrors | null {
     let regexPatternForNumbers: string = '^[0-9]+$';
 
