@@ -42,7 +42,7 @@ export class ProductFormComponent
 
   ngOnInit(): void {
     this.productForm = this.formBuilder.group({
-      product: this.formBuilder.array([this.buildNewProduct()]),
+      product: this.formBuilder.array([this.createFormGroup()]),
     });
     this.subscription = this.product.valueChanges.subscribe(
       () => (this.isDirty = true)
@@ -55,7 +55,7 @@ export class ProductFormComponent
     }
   }
 
-  private buildNewProduct(): FormGroup {
+  private createFormGroup(): FormGroup {
     return this.formBuilder.group({
       name: new FormControl('', [
         Validators.required,
@@ -90,7 +90,7 @@ export class ProductFormComponent
   }
 
   protected addProduct(): void {
-    this.product.push(this.buildNewProduct());
+    this.product.push(this.createFormGroup());
   }
 
   protected reset(): void {
