@@ -10,13 +10,21 @@
     </mat-grid-tile>
   </mat-grid-list>
   <div class="btns">
-    <mat-button-toggle
+    <button
+      mat-raised-button
       class="previous-button"
       (click)="togglePreviousPokemons()"
-      >previous</mat-button-toggle
+      color="primary"
     >
-    <mat-button-toggle class="next-button" (click)="toggleNextPokemons()"
-      >next</mat-button-toggle
+      previous
+    </button>
+    <button
+      mat-raised-button
+      class="next-button"
+      (click)="toggleNextPokemons()"
+      color="primary"
     >
+      next
+    </button>
   </div>
 </div>

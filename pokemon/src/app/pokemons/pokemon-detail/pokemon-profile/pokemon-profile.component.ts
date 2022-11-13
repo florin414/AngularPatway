@@ -17,7 +17,7 @@ export class PokemonProfileComponent implements OnChanges, OnInit {
 
   ngOnChanges() {
     this.pokemonService
-      .getPokemonProfile(this.pokemonDetails.species.url)
+      .getPokemonProfile(this.pokemonDetails?.species.url)
       .then((profile) => {
         this.profile = profile;
       });

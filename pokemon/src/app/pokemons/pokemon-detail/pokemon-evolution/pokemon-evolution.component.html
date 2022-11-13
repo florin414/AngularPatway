@@ -1,35 +1,38 @@
-<div class="row">
-  <div class="evolution">
-    <img [src]="pokemonDetails?.sprites.front_default" />
-    <mat-icon> keyboard_arrow_right</mat-icon>
-    <img [src]="pokemonDetails?.sprites.front_default" />
-  </div>
-  <div class="description">
-    <h2>{{pokemonDetails?.id}}</h2>
-    <h3 *ngIf="pokemonDetails?.id%2!=0 && pokemonDetails?.id%3!=0">
-      {{ pokemonDetails?.name }} evolves into
-      {{ evolutionChainPokemon?.chain.evolves_to[0].species?.name}}
-      <strong>
-        at level
+<div class="container">
+  <div class="row">
+    <div class="evolution">
+      <img [src]="pokemonDetails?.sprites.front_default" />
+      <mat-icon> keyboard_arrow_right</mat-icon>
+      <img [src]="pokemonDetails?.sprites.front_default" />
+    </div>
+    <div class="description">
+      <h3 *ngIf="pokemonDetails?.id % 2 != 0 && pokemonDetails?.id % 3 != 0">
+        {{ pokemonDetails?.name }} evolves into
+        {{ evolutionChainPokemon?.chain.evolves_to[0].species?.name }}
+        <strong>
+          at level
+          {{
+            evolutionChainPokemon?.chain.evolves_to[0].evolution_details[0]
+              .min_level
+          }}.</strong
+        >
+      </h3>
+      <h3 *ngIf="pokemonDetails?.id % 2 == 0">
+        {{ pokemonDetails?.name }} evolves into
         {{
-          evolutionChainPokemon?.chain.evolves_to[0].evolution_details[0]
-            .min_level
-        }}.</strong
-      >
-    </h3>
-    <h3 *ngIf="pokemonDetails?.id%2==0">
-      {{ pokemonDetails?.name }} evolves into
-      {{ evolutionChainPokemon?.chain.evolves_to[0].evolves_to[0].species.name}}
-      <strong>
-        at level
-        {{
-          evolutionChainPokemon?.chain.evolves_to[0].evolves_to[0].evolution_details[0]
-            .min_level
-        }}.</strong
-      >
-    </h3>
-    <h3 *ngIf="pokemonDetails?.id%3==0">
-      {{ pokemonDetails?.name }} last evolve
-    </h3>
+          evolutionChainPokemon?.chain.evolves_to[0].evolves_to[0].species.name
+        }}
+        <strong>
+          at level
+          {{
+            evolutionChainPokemon?.chain.evolves_to[0].evolves_to[0]
+              .evolution_details[0].min_level
+          }}.</strong
+        >
+      </h3>
+      <h3 *ngIf="pokemonDetails?.id % 3 == 0">
+        {{ pokemonDetails?.name }} last evolve
+      </h3>
+    </div>
   </div>
 </div>

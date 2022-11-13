@@ -1,3 +1,6 @@
+import { ProgressBarColorDirective } from './../shared/progress-bar-color.directive';
+import { ProgressBarComponent } from './../shared/progress-bar/progress-bar.component';
+import { BarComponent } from './../shared/bar/bar.component';
 import { PageNotFoundComponent } from './../shared/page-not-found/page-not-found.component';
 import { LoaderComponent } from './../shared/loader-component/loader.component';
 import { MaterialModule } from './../shared/material.module';
@@ -26,7 +29,10 @@ import { LoaderInterceptor } from '../shared/interceptor/loader.interceptor';
     PokemonEvolutionComponent,
     PokemonDamageComponent,
     LoaderComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    BarComponent,
+    ProgressBarComponent,
+    ProgressBarColorDirective
   ],
   imports: [
     PokemonRoutingModule,

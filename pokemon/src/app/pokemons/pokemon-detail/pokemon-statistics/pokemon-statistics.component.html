@@ -1,1 +1,17 @@
-<p>pokemon-statistics works!</p>
+<div class="container">
+  <div class="columns">
+    <div class="img">
+      <img [src]="pokemonDetails?.sprites.front_default" />
+    </div>
+    <div *ngFor="let stat of pokemonDetails?.stats">
+      <app-progress-bar
+        [value]="stat.base_stat < 100 ? stat.base_stat : 100"
+        [state]="stat.stat?.name"
+        [color]="pokemonColor"
+      ></app-progress-bar>
+    </div>
+    <div class="id">
+      <h1>#{{pokemonDetails?.id}}</h1>
+    </div>
+  </div>
+</div>

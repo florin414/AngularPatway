@@ -28,7 +28,6 @@ import { HttpClientModule } from '@angular/common/http';
     FlexLayoutModule,
     FormsModule,
   ],
-  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

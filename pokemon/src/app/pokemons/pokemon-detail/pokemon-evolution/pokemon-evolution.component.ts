@@ -17,7 +17,7 @@ export class PokemonEvolutionComponent implements OnInit, OnChanges {
   ngOnInit() {}
 
   ngOnChanges() {
-    this.pokemonService.getPokemonEvolutionById(Math.ceil(this.pokemonDetails.id / 3)).then(
+    this.pokemonService.getPokemonEvolutionById(Math.ceil(this.pokemonDetails?.id / 3)).then(
       (evolution) => this.evolutionChainPokemon = evolution
     )
   }

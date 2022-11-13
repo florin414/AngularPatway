@@ -1,0 +1,11 @@
+.container{
+  margin: 10px;
+}
+.wrapper {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-gap: 10px;
+  background-color: #fff;
+  color: #444;
+  margin: 0px 350px 0px 350px;
+}

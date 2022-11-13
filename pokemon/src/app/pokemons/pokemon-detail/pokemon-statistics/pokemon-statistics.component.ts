@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { PokemonService } from './../../../services/pokemon.service';
+import { PokemonDetails } from './../../../models/pokemon/pokemon-details';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pokemon-statistics',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonStatisticsComponent implements OnInit {
 
-  constructor() { }
+  @Input() pokemonDetails : PokemonDetails;
+  public pokemonColor: string;
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
+    this.pokemonService.getPokemonColorById(this.pokemonDetails?.id).then(
+      (color) => this.pokemonColor = color
+    );
   }
-
 }
