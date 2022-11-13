@@ -20,6 +20,7 @@ export class PokemonDetailComponent implements OnInit{
 
   ngOnInit(): void {
     const name = String(this.route.snapshot.paramMap.get('name'));
+
     if (name) {
       this.getPokemonColor(name);
       this.getPokemonDetail(name);

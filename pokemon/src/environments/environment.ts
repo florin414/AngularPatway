@@ -7,7 +7,8 @@ export const environment = {
   pokemonBaseUrl: 'https://pokeapi.co/api/v2/pokemon/',
   productUrl: 'https://localhost:7088/Product',
   evolutionChainUrl: 'https://pokeapi.co/api/v2/evolution-chain/',
-  pokemonSpecies: 'https://pokeapi.co/api/v2/pokemon-species/'
+  pokemonSpecies: 'https://pokeapi.co/api/v2/pokemon-species/',
+  growthRate:'https://pokeapi.co/api/v2/growth-rate/'
 };
 
 /*

@@ -13,7 +13,7 @@ import { Profile } from '../models/pokemon/pokemon-details-dto/pokemon-profile/p
 export class PokemonService {
   private pokemonDetailsUrl = environment.pokemonBaseUrl;
   private evolutionChainUrl = environment.evolutionChainUrl;
-  private pokemonSpecies = environment.pokemonSpecies;
+  private pokemonSpeciesUrl = environment.pokemonSpecies;
 
   constructor(private http: HttpClient) {}
 
@@ -45,15 +45,22 @@ export class PokemonService {
 
   public async getPokemonColorByName(name: string): Promise<string>{
     let pokemon = await firstValueFrom(
-      this.http.get<Profile>(`${this.pokemonSpecies}${name}/`)
+      this.http.get<Profile>(`${this.pokemonSpeciesUrl}${name}/`)
     );
     return pokemon.color.name;
   }
 
   public async getPokemonColorById(name: number): Promise<string>{
     let pokemon = await firstValueFrom(
-      this.http.get<Profile>(`${this.pokemonSpecies}${name}/`)
+      this.http.get<Profile>(`${this.pokemonSpeciesUrl}${name}/`)
     );
     return pokemon.color.name;
+  }
+
+  public async getPokemonImgByName(name: string): Promise<string> {
+    let pokemon = await firstValueFrom(
+      this.http.get<PokemonDetails>(`${this.pokemonDetailsUrl}${name}/`)
+    );
+    return pokemon.sprites.front_default;
   }
 }

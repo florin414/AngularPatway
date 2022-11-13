@@ -1,6 +1,6 @@
 <div class="container">
-  <ng-template [ngIf]="pokemonDetails == null && false" [ngIfElse]="pokemon">
-    <h1>Pokemon is invalid!</h1>
+  <ng-template [ngIf]="pokemonDetails == null" [ngIfElse]="pokemon">
+    <h1 class="pokemon-invalid">Pokemon is invalid!</h1>
   </ng-template>
   <ng-template #pokemon>
     <div class="row">
