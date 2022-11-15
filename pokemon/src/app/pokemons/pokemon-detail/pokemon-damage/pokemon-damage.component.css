@@ -1,0 +1,68 @@
+.container{
+  margin: 10px;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 300px 300px;
+  grid-gap: 5px;
+  background-color: #fff;
+  color: #444;
+  margin: 0px 350px 0px 350px;
+}
+
+.wrapper > *{
+  width: 250px;
+  height: 40px;
+  padding: 30px;
+  margin: 10px;
+  display: block;
+  line-height: 0rem;
+}
+.fighthing{
+  background-color: rgb(184, 55, 46);
+}
+
+.fairy{
+  background-color: rgb(251, 204, 250);
+}
+
+.water{
+  background-color: rgb(61, 82, 188);
+}
+
+.electric{
+  background-color: rgb(237, 217, 4);
+}
+
+.grass{
+  background-color: rgb(114, 203, 91);
+}
+
+.ground{
+  background-color: rgba(171, 147, 29, 0.518);
+}
+
+.psychic{
+  background-color: rgb(241, 56, 56);
+}
+
+.flying{
+  background-color: rgb(111, 88, 240);
+}
+
+.fire{
+  background-color: rgb(236, 141, 122);
+}
+
+.ice{
+  background-color: rgb(84, 173, 237);
+}
+
+span{
+  font-size: 1.3rem ;
+  font-weight: 400;
+  color: white;
+  float: left;
+}
+

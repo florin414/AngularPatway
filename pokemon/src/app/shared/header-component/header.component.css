@@ -1,0 +1,38 @@
+span {
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+span:hover {
+  background-color: white;
+}
+
+span.active {
+  background-color: white;
+}
+
+.left-container{
+  display: flex;
+}
+
+.search-toggle-container{
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-left: auto;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+}
+
+mat-slide-toggle{
+  transform: scale(1.2);
+  margin-right: 20px;
+  margin-top: 5px;
+}
+
+

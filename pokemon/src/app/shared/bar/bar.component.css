@@ -1,0 +1,12 @@
+.bar{
+  width: auto;
+  padding: 30px;
+  margin: 20px;
+  display: block;
+  line-height: 0rem;
+}
+
+span{
+  font-size: 1.8rem;
+  float: left;
+}

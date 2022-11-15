@@ -1,0 +1,35 @@
+<div class="container">
+  <ng-template [ngIf]="pokemonDetails == null" [ngIfElse]="pokemon">
+    <h1 class="pokemon-invalid">Pokemon is invalid!</h1>
+  </ng-template>
+  <ng-template #pokemon>
+    <div class="row">
+      <div class="pokemon-statistics">
+        <app-bar [title]="pokemonDetails.name | uppercase" [color]="pokemonColor"></app-bar>
+        <app-pokemon-statistics [pokemonDetails]="pokemonDetails"></app-pokemon-statistics>
+      </div>
+      <div class="pokemon-profile">
+        <app-bar [title]="'Profile'" [color]="pokemonColor"></app-bar>
+        <app-pokemon-profile
+          [pokemonDetails]="pokemonDetails"
+        ></app-pokemon-profile>
+      </div>
+      <div class="pokemon-evolution">
+        <app-bar [title]="'Evolutions'" [color]="pokemonColor"></app-bar>
+        <app-pokemon-evolution
+          [pokemonDetails]="pokemonDetails"
+        ></app-pokemon-evolution>
+      </div>
+      <div class="pokemon-damage">
+        <app-bar [title]="'Damage When Attacked'" [color]="pokemonColor"></app-bar>
+        <app-pokemon-damage></app-pokemon-damage>
+      </div>
+    </div>
+  </ng-template>
+  <div class="on-back-btn">
+    <button mat-raised-button routerLink="/pokemons" color="primary">
+      On Back
+    </button>
+  </div>
+</div>
+<router-outlet></router-outlet>

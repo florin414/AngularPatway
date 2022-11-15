@@ -1,0 +1,65 @@
+.input-up-container {
+  position: relative;
+  left: 90px;
+}
+
+.name-form-field {
+  width: 30%;
+}
+
+.description-form-field {
+  width: 30%;
+}
+
+.price-form-field {
+  width: 30%;
+}
+
+.input-down-container {
+  position: relative;
+  left: 90px;
+}
+
+.category-form-field {
+  width: 30%;
+}
+
+.image-url-form-field {
+  width: 30%;
+}
+
+.phone-form-field {
+  width: 15%;
+}
+
+.select-form-field {
+  width: 12%;
+}
+
+mat-label {
+  color: blue;
+}
+
+mat-form-field {
+  padding-right: 80px;
+  margin-top: 70px;
+}
+
+mat-icon {
+  padding-right: 50px;
+}
+
+button {
+  margin-top: 150px;
+  margin-right: 100px;
+  margin-left: 20px;
+  float: right;
+  padding-right: 25px;
+}
+
+
+.mat-error {
+  display: block;
+  font-size: 14px;
+}
+

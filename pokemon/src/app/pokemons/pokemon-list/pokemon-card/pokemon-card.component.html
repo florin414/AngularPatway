@@ -1,0 +1,11 @@
+<app-loader></app-loader>
+<mat-card [routerLink]="['/pokemon', pokemonDetails?.name]" class="card-pokemon ">
+  <img mat-card-image [src]="pokemonDetails?.sprites?.front_default" />
+  <mat-card-header>
+    <mat-card-subtitle fxLayoutAlign="center center">
+      <strong>
+        <a>{{ pokemonDetails?.name }}</a>
+      </strong>
+    </mat-card-subtitle>
+  </mat-card-header>
+</mat-card>

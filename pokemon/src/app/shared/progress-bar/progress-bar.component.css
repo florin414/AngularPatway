@@ -1,0 +1,17 @@
+mat-progress-bar{
+  margin: 2px;
+  height: 20px;
+  width: 300px;
+}
+
+.container{
+  display: flex;
+}
+
+.progress-bar{
+  width: 300px;
+}
+
+.skills{
+  width: 200px;
+}

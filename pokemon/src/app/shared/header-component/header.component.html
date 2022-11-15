@@ -1,0 +1,16 @@
+<div class="header">
+  <mat-toolbar color="primary" class="app-sidenav mat-elevation-z10">
+    <div class="left-container">
+      <span routerLinkActive="active" routerLink="/pokemons">Pokemon</span>
+      <span>Detail</span>
+        <span *ngIf="isAdmin" routerLinkActive="active" routerLink="/products">Create Product</span>
+      <span routerLinkActive="active" routerLink="/product-list">Product List</span>
+    </div>
+    <div class="search-toggle-container">
+      <app-serach></app-serach>
+      <mat-slide-toggle [checked]="isAdmin" (change)="isAdmin = !isAdmin">
+      </mat-slide-toggle>
+    </div>
+  </mat-toolbar>
+</div>
+

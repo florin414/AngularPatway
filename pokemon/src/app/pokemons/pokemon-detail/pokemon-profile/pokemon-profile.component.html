@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="wrapper">
+    <span><strong>Height: &nbsp;</strong>{{ pokemonDetails?.height }} m</span>
+    <span><strong>Catch Rate: &nbsp;</strong></span>
+    <span
+      ><strong>Egg Groups: &nbsp;</strong>
+      <mat-label *ngFor="let eggGroup of profile?.egg_groups">
+        {{ eggGroup.name }}, &nbsp;
+      </mat-label>
+    </span>
+    <span
+      ><strong>Abilities: &nbsp;</strong>
+      <mat-label *ngFor="let abilitie of pokemonDetails?.abilities">
+        {{ abilitie.ability.name }}, &nbsp;</mat-label
+      ></span
+    >
+    <span><strong>Weight: &nbsp;</strong> {{ pokemonDetails?.weight }} kg</span>
+    <span><strong>Gender Ratio: &nbsp;</strong></span>
+    <span><strong>Hatch Steps: &nbsp;</strong></span>
+    <span><strong>EVs: &nbsp;</strong></span>
+  </div>
+</div>
