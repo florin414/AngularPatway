@@ -1,10 +1,4 @@
-import {
-  Directive,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  ElementRef,
-} from '@angular/core';
+import { Directive, Input, OnChanges, ElementRef } from '@angular/core';
 
 @Directive({
   selector: '[appProgressBarColor]',
@@ -23,7 +17,7 @@ export class ProgressBarColorDirective implements OnChanges {
     nativeEl.appendChild(this.styleEl);
   }
 
-  ngOnChanges(changes: SimpleChanges): void {
+  ngOnChanges(): void {
     this.updateColor();
   }
 
