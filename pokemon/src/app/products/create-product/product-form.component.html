@@ -14,11 +14,7 @@
                 matInput
                 placeholder="Name (required)"
                 formControlName="name"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('name')?.touched || label.get('name')?.dirty) &&
-                    !label.get('name')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'name')"
               />
               <mat-error *ngIf="label.get('name')?.errors?.['required']">
                 Please enter name.
@@ -39,12 +35,7 @@
                 matInput
                 placeholder="Description (required)"
                 formControlName="description"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('description')?.touched ||
-                      label.get('description')?.dirty) &&
-                    !label.get('description')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'description')"
               />
               <mat-error *ngIf="label.get('description')?.errors?.['required']">
                 Please enter description.
@@ -67,12 +58,7 @@
                 matInput
                 placeholder="Price (required)"
                 formControlName="price"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('price')?.touched ||
-                      label.get('price')?.dirty) &&
-                    !label.get('price')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'price')"
               />
               <mat-error *ngIf="label.get('price')?.errors?.['required']">
                 Please enter price.
@@ -92,16 +78,11 @@
               <mat-label>Category</mat-label>
               <mat-select
                 formControlName="category"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('category')?.touched ||
-                      label.get('category')?.dirty) &&
-                    !label.get('category')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'category')"
               >
-                <mat-option [value]=0>Electronics</mat-option>
-                <mat-option [value]=1>Cloths</mat-option>
-                <mat-option [value]=2>Blankets</mat-option>
+                <mat-option [value]="0">Electronics</mat-option>
+                <mat-option [value]="1">Cloths</mat-option>
+                <mat-option [value]="2">Blankets</mat-option>
               </mat-select>
               <mat-error *ngIf="label.get('category')?.errors?.['required']">
                 Please select an option.
@@ -114,12 +95,7 @@
                 matInput
                 placeholder="ImageUrl (required)"
                 formControlName="imageUrl"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('imageUrl')?.touched ||
-                      label.get('imageUrl')?.dirty) &&
-                    !label.get('imageUrl')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'iamgeUrl')"
               />
               <mat-error *ngIf="label.get('imageUrl')?.errors?.['required']">
                 Please enter image url.
@@ -137,12 +113,7 @@
                 matInput
                 placeholder="Phone (required)"
                 formControlName="phone"
-                [ngClass]="{
-                  'is-invalid':
-                    (label.get('phone')?.touched ||
-                      label.get('phone')?.dirty) &&
-                    !label.get('phone')?.valid
-                }"
+                [ngClass]="isInvalidForm(label, 'phone')"
               />
               <mat-error *ngIf="label.get('phone')?.errors?.['required']">
                 Please enter your phone number.
@@ -158,8 +129,8 @@
             <mat-form-field class="select-form-field">
               <mat-label>Select</mat-label>
               <mat-select formControlName="select">
-                <mat-option [value]=0>Mobile</mat-option>
-                <mat-option [value]=1>LandLine</mat-option>
+                <mat-option [value]="0">Mobile</mat-option>
+                <mat-option [value]="1">LandLine</mat-option>
               </mat-select>
             </mat-form-field>
           </div>

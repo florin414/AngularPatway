@@ -1,7 +1,8 @@
 import { Product } from '../../models/product/product';
 import { ProductService } from '../../services/product.service';
-import { Component, OnInit, DoCheck } from '@angular/core';
+import { Component, OnInit, DoCheck, HostListener } from '@angular/core';
 import {
+  AbstractControl,
   FormArray,
   FormBuilder,
   FormControl,
@@ -37,7 +38,13 @@ export class ProductFormComponent
   }
 
   canDeactivate(): boolean {
-    return this.isDirty;
+    // return this.isDirty;
+    return this.unloadHandler();
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  unloadHandler() {
+    return true;
   }
 
   ngOnInit(): void {
@@ -52,6 +59,15 @@ export class ProductFormComponent
   ngDoCheck(): void {
     if(this.productForm.valid){
       this.isDirty = false;
+    }
+  }
+
+  public isInvalidForm(label: AbstractControl<any, any>, form: string): { [klass: string]: any; } {
+    return {
+      'is-invalid':
+        (label.get(form)?.touched ||
+          label.get(form)?.dirty) &&
+        !label.get(form)?.valid
     }
   }
 
