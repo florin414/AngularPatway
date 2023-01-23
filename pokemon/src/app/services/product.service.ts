@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Product } from '../models/product/product';
@@ -17,9 +17,12 @@ export class ProductService {
   }
 
   public async addProduct(product: Product): Promise<Product> {
-    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
-    return await lastValueFrom(
-      this.http.post<Product>(this.productUrl, product, { headers: headers })
+    const headers = new HttpHeaders().set(
+      'Content-Type',
+      'application/json; charset=utf-8'
     );
+    return await this.http
+      .post<Product>(this.productUrl, product, { headers: headers })
+      .toPromise();
   }
 }

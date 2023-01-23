@@ -24,17 +24,9 @@ export class PokemonDetailComponent implements OnInit {
   }
 
   private async loadingPokeomDetail(name: string) {
-    await this.getPokemonColor(name);
-    await this.getPokemonDetail(name);
-  }
-
-  private async getPokemonDetail(name: string) {
-    this.pokemonDetails = await this.pokemonService.getPokemonDetailsByName(
-      name
-    );
-  }
-
-  private async getPokemonColor(name: string) {
-    this.pokemonColor = await this.pokemonService.getPokemonColorByName(name);
+    [this.pokemonDetails, this.pokemonColor] = await Promise.all([
+      this.pokemonService.getPokemonDetailsByName(name),
+      this.pokemonService.getPokemonColorByName(name)
+    ]);
   }
 }

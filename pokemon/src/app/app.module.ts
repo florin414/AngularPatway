@@ -1,3 +1,4 @@
+import { PreloadingStrategyApp } from './shared/preloading-strategy-app';
 import { FormsModule } from '@angular/forms';
 import { SerachComponent } from './shared/serach/serach.component';
 import { HeaderComponent } from './shared/header-component/header.component';
@@ -12,11 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    SerachComponent
-  ],
+  declarations: [AppComponent, HeaderComponent, SerachComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -29,5 +26,6 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
   ],
   bootstrap: [AppComponent],
+  providers: [PreloadingStrategyApp],
 })
 export class AppModule {}

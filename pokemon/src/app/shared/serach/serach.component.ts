@@ -6,11 +6,13 @@ import { Router } from '@angular/router';
   templateUrl: './serach.component.html',
   styleUrls: ['./serach.component.css'],
 })
-export class SerachComponent{
+export class SerachComponent {
   public input: string;
-  constructor( private router: Router) {}
+  constructor(private router: Router) {}
 
-  public search(): void {
-    this.router.navigate(['/pokemon', this.input]);
+  public onSearch(): void {
+    this.router.navigateByUrl(`pokemon${this.input}`).then(() =>{
+      this.router.navigate(['pokemon', this.input]);
+    });
   }
 }

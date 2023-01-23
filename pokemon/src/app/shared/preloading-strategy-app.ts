@@ -1,8 +1,21 @@
+import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
-import { of } from 'rxjs';
+import { flatMap, of, timer } from 'rxjs';
 
+@Injectable()
 export class PreloadingStrategyApp implements PreloadingStrategy {
-  preload(route: Route, loadModule: Function) {
-    return route.data && route.data['applyPreload'] ? loadModule() : of(null);
+  preload(route: Route, loadModule: Function){
+    if (route.data && route.data['preload']) {
+      var delay:number=route.data['delay']
+      console.log('preload called on '+route.path+' delay is '+delay);
+      return timer(delay).pipe(
+        flatMap( _ => {
+          console.log("Loading now "+ route.path);
+          return loadModule() ;
+        }));
+    } else {
+      console.log('no preload for the path '+ route.path);
+      return of(null);
+    }
   }
 }
